@@ -25,10 +25,30 @@ function loop() {
     gameLoop = requestAnimationFrame(loop)
 }
 
-function keyDown() {
+function keyDown(event) {
+    let key = event.key
+
+    if (state === 'Start') {
+        state = ''
+    }
+
+    if (scene === 'Title') {
+        keyDownTitle(key)
+    }
 }
 
-function mouseUp() {
+function mouseUp(event) {
+    let targetRect = event.getBoundingClientRect()
+    let pos = {x: (event.clientX - targetRect.left) / targetRect.width * canvas.width, y: (event.clientY - targetRect.top) / targetRect.height * canvas.height}
+    let button = event.button
+
+    if (state === 'Start') {
+        state = ''
+    }
+
+    if (scene === 'Title') {
+        mouseUpTitle(pos, button)
+    }
 }
 
 function errorHandle(err, url, line, col, obj) {
