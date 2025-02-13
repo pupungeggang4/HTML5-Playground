@@ -20,6 +20,8 @@ function loop() {
 
     if (scene === 'Title') {
         loopTitle()
+    } else if (scene === 'Card') {
+        loopCard()
     }
 
     gameLoop = requestAnimationFrame(loop)
@@ -34,11 +36,13 @@ function keyDown(event) {
 
     if (scene === 'Title') {
         keyDownTitle(key)
+    } else if (scene === 'Card') {
+        keyDownCard(key)
     }
 }
 
 function mouseUp(event) {
-    let targetRect = event.getBoundingClientRect()
+    let targetRect = canvas.getBoundingClientRect()
     let pos = {x: (event.clientX - targetRect.left) / targetRect.width * canvas.width, y: (event.clientY - targetRect.top) / targetRect.height * canvas.height}
     let button = event.button
 
@@ -48,6 +52,8 @@ function mouseUp(event) {
 
     if (scene === 'Title') {
         mouseUpTitle(pos, button)
+    } else if (scene === 'Card') {
+        mouseUpCard(pos, button)
     }
 }
 

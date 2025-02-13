@@ -9,3 +9,5 @@ let delta
 let scene = 'Title'
 let state = 'Start'
 let menu = false
+
+let tempObj
