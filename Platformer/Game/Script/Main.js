@@ -9,6 +9,8 @@ function main() {
     window.addEventListener('mouseup', mouseUp, false)
     canvas.addEventListener('keydown', keyDown, false)
 
+    imageLoad()
+
     frameCurrent = Date.now()
     gameLoop = requestAnimationFrame(loop)
 }
@@ -31,7 +33,7 @@ function mouseUp(event) {
     let targetRect = canvas.getBoundingClientRect()
     let pos = {
         x: (event.clientX - targetRect.left) / targetRect.width * canvas.width,
-        y: (event.clientY - targetRect.top) / targetRect.height * cavnas.height
+        y: (event.clientY - targetRect.top) / targetRect.height * canvas.height
     }
     let button = event.button
 

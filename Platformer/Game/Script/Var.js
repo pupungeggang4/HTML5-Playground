@@ -6,6 +6,6 @@ let frameCurrent
 let framePrevious
 let delta
 
-let scene = 'Title'
+let scene = 'Edit'
 let state = ''
 let menu = false
