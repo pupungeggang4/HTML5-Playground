@@ -10,4 +10,6 @@ let scene = 'Title'
 let state = 'Start'
 let menu = false
 
+let player
+let field
 let tempObj

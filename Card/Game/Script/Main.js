@@ -20,8 +20,8 @@ function loop() {
 
     if (scene === 'Title') {
         loopTitle()
-    } else if (scene === 'Card') {
-        loopCard()
+    } else if (scene === 'Battle') {
+        loopBattle()
     }
 
     gameLoop = requestAnimationFrame(loop)
@@ -36,8 +36,8 @@ function keyDown(event) {
 
     if (scene === 'Title') {
         keyDownTitle(key)
-    } else if (scene === 'Card') {
-        keyDownCard(key)
+    } else if (scene === 'Battle') {
+        keyDownBattle(key)
     }
 }
 
@@ -52,8 +52,8 @@ function mouseUp(event) {
 
     if (scene === 'Title') {
         mouseUpTitle(pos, button)
-    } else if (scene === 'Card') {
-        mouseUpCard(pos, button)
+    } else if (scene === 'Battle') {
+        mouseUpBattle(pos, button)
     }
 }
 
