@@ -2,7 +2,12 @@ class Field {
     unitList = []
 
     constructor() {
-        this.unitList = [new Unit(), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, new Unit()] 
+        this.unitList = [
+            new Unit(dataCard[1]), 
+            new EmptyThing(), new EmptyThing(), new EmptyThing(), new EmptyThing(), new EmptyThing(), new EmptyThing(),
+            new EmptyThing(), new EmptyThing(), new EmptyThing(), new EmptyThing(), new EmptyThing(), new EmptyThing(),
+            new Unit(dataCard[1])
+        ] 
     }
 
     render() {
@@ -21,7 +26,7 @@ class Player {
     deck = []
 
     constructor() {
-        this.hand = [new Card(), new Card, new Card()]
+        this.hand = [new Card(dataCard[1]), new Card(dataCard[1]), new Card(dataCard[1])]
         this.deck = []
         this.energy = []
     }
@@ -39,11 +44,12 @@ class Card {
     hp = 0
     name = 'Card'
 
-    constructor() {
-        this.energy = []
-        this.attack = 1
-        this.hp = 2
-        this.name = 'Card'
+    constructor(data) {
+        let dataCopy = JSON.parse(JSON.stringify(data))
+        this.name = dataCopy['Name']
+        this.energy = dataCopy['Energy']
+        this.attack = dataCopy['Stat'][0]
+        this.hp = dataCopy['Stat'][1]
     }
 
     render(x, y) {
@@ -60,17 +66,28 @@ class Card {
     }
 }
 
-class Unit {
+class FieldThing {
+    constructor() {
+
+    }
+}
+
+class EmptyThing extends FieldThing {
+}
+
+class Unit extends FieldThing {
     energy = []
     attack = 0
     hp = 0
     name = 'Unit'
 
-    constructor() {
-        this.energy = []
-        this.attack = 1
-        this.hp = 2
-        this.name = 'Unit'
+    constructor(data) {
+        super()
+        let dataCopy = JSON.parse(JSON.stringify(data))
+        this.energy = dataCopy['Energy']
+        this.attack = dataCopy['Stat'][0]
+        this.hp = dataCopy['Stat'][1]
+        this.name = dataCopy['Name']
     }
 
     render(x, y) {
