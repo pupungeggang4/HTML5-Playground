@@ -2,5 +2,5 @@ let img = {
 }
 
 function imageLoad() {
-    
+
 }

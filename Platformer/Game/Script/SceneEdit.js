@@ -4,6 +4,7 @@ function loopEdit() {
 
 function renderEdit() {
     renderInit()
+    renderFieldInit()
     strokeRect(UI.edit.barTop)
     strokeRect(UI.edit.barLeft)
     strokeRect(UI.edit.barRight)

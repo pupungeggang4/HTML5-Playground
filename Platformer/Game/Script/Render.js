@@ -10,8 +10,22 @@ function renderInit() {
     context.fillStyle = 'Black'
 }
 
+function renderFieldInit() {
+    fieldContext.fillStyle = 'White'
+    fieldContext.clearRect(0, 0, 2000, 2000)
+    fieldContext.fillRect(0, 0, 2000, 2000)
+    fieldContext.fillStyle = 'Black'
+
+    fieldContext.fillRect(0, 0, 80, 80)
+    context.drawImage(fieldCanvas, 0, 0, UI.edit.screen[2], UI.edit.screen[3], UI.edit.screen[0], UI.edit.screen[1], UI.edit.screen[2], UI.edit.screen[3])
+}
+
 function strokeRect(rect) {
     context.strokeRect(rect[0], rect[1], rect[2], rect[3])
+}
+
+function strokeRectCenter(position, size) {
+    context.strokeRect(position.x - size.x / 2, position.y - size.y / 2, size.x, size.y)
 }
 
 function fillRect(rect) {

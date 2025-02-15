@@ -5,6 +5,10 @@ window.oncontextmenu = rightClick
 function main() {
     canvas = document.getElementById('Screen')
     context = canvas.getContext('2d')
+    fieldCanvas = document.createElement('canvas')
+    fieldCanvas.width = 2000
+    fieldCanvas.height = 2000
+    fieldContext = fieldCanvas.getContext('2d')
 
     window.addEventListener('mouseup', mouseUp, false)
     canvas.addEventListener('keydown', keyDown, false)
