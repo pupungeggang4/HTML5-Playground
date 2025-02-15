@@ -12,4 +12,5 @@ let menu = false
 
 let player
 let field
+let cardHandler
 let tempObj
