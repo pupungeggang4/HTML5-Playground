@@ -14,6 +14,7 @@ function main() {
     canvas.addEventListener('keydown', keyDown, false)
 
     imageLoad()
+    gameInit()
 
     frameCurrent = Date.now()
     gameLoop = requestAnimationFrame(loop)

@@ -11,12 +11,17 @@ function renderInit() {
 }
 
 function renderFieldInit() {
+    fieldContext.lineWidth = 2
     fieldContext.fillStyle = 'White'
     fieldContext.clearRect(0, 0, 2000, 2000)
     fieldContext.fillRect(0, 0, 2000, 2000)
     fieldContext.fillStyle = 'Black'
+}
 
-    fieldContext.fillRect(0, 0, 80, 80)
+function renderScreen() {
+    renderFieldInit()
+    player.render()
+    field.render()
     context.drawImage(fieldCanvas, 0, 0, UI.edit.screen[2], UI.edit.screen[3], UI.edit.screen[0], UI.edit.screen[1], UI.edit.screen[2], UI.edit.screen[3])
 }
 

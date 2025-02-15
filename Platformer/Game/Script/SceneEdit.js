@@ -9,6 +9,7 @@ function renderEdit() {
     strokeRect(UI.edit.barLeft)
     strokeRect(UI.edit.barRight)
     strokeRect(UI.edit.barBottom)
+    renderScreen()
 }
 
 function mouseUpEdit(pos, button) {

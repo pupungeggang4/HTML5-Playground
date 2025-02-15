@@ -13,6 +13,6 @@ let menu = false
 let fieldCanvas
 let fieldContext
 
-let field = [
+let field
 
-]
+let player
