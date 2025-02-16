@@ -25,6 +25,22 @@ function renderScreen() {
     context.drawImage(fieldCanvas, 0, 0, UI.edit.screen[2], UI.edit.screen[3], UI.edit.screen[0], UI.edit.screen[1], UI.edit.screen[2], UI.edit.screen[3])
 }
 
+function renderBarTop() {
+    strokeRect(UI.edit.barTop.rect)
+}
+
+function renderBarLeft() {
+    strokeRect(UI.edit.barLeft.rect)
+}
+
+function renderBarRight() {
+    strokeRect(UI.edit.barRight.rect)
+}
+
+function renderBarBottom() {
+    strokeRect(UI.edit.barBottom.rect)
+}
+
 function strokeRect(rect) {
     context.strokeRect(rect[0], rect[1], rect[2], rect[3])
 }
