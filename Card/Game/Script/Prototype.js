@@ -31,6 +31,10 @@ class Player {
         this.energy = []
     }
 
+    buildDeck() {
+        this.deck = [new Card(dataCard[1]), new Card(dataCard[1]), new Card(dataCard[1])]
+    }
+
     renderHand() {
         for (let i = 0; i < this.hand.length; i++) {
             this.hand[i].render(UI.battle.handStart[0] + UI.battle.handInterval[0] * i, UI.battle.handStart[1] + UI.battle.handInterval[1] * i)

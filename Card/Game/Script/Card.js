@@ -5,6 +5,10 @@ class CardHandler {
         this.stack = []
     }
 
+    doCard(card, player, field) {
+
+    }
+
     flush() {
         
     }
