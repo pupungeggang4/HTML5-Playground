@@ -77,6 +77,9 @@ class FieldThing {
 }
 
 class EmptyThing extends FieldThing {
+    constructor() {
+        super()
+    }
 }
 
 class Unit extends FieldThing {
