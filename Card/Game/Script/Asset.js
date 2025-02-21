@@ -1,5 +1,0 @@
-let img = {
-}
-
-function imageLoad() {
-}
