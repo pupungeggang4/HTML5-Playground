@@ -23,9 +23,25 @@ class FieldElement {
 }
 
 class PlayerField extends FieldElement {
-    constructor() {
+    constructor() {       
         super()
         this.rect = new Rect2D(0, 0, 80, 80)
+        this.speed = 320
+    }
+
+    move() {
+        if (keyPress['left'] === true) {
+            this.rect.position.x -= this.speed * delta / 1000
+        }
+        if (keyPress['right'] === true) {
+            this.rect.position.x += this.speed * delta / 1000
+        }
+        if (keyPress['up'] === true) {
+            this.rect.position.y -= this.speed * delta / 1000
+        }
+        if (keyPress['down'] === true) {
+            this.rect.position.y += this.speed * delta / 1000
+        }
     }
 }
 

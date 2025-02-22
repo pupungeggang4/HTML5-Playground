@@ -35,6 +35,19 @@ function loop() {
 function keyDown(event) {
     let key = event.key
 
+    if (key === 'a') {
+        keyPress['left'] = true
+    }
+    if (key === 'd') {
+        keyPress['right'] = true
+    }
+    if (key === 'w') {
+        keyPress['up'] = true
+    }
+    if (key === 's') {
+        keyPress['down'] = true
+    }
+
     if (state === 'start') {
         state = ''
     }
@@ -50,6 +63,19 @@ function keyDown(event) {
 
 function keyUp(event) {
     let key = event.key
+
+    if (key === 'a') {
+        keyPress['left'] = false
+    }
+    if (key === 'd') {
+        keyPress['right'] = false
+    }
+    if (key === 'w') {
+        keyPress['up'] = false
+    }
+    if (key === 's') {
+        keyPress['down'] = false
+    }
 
     if (scene === 'title') {
         keyUpTitle(key)

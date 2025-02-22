@@ -1,4 +1,5 @@
 function loopField() {
+    game.handleTickField()
     renderField()
 }
 

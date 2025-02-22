@@ -11,4 +11,8 @@ class GameManager {
         playerField.rect.position.x = 640
         playerField.rect.position.y = 640
     }
+
+    handleTickField() {
+        playerField.move()
+    }
 }
