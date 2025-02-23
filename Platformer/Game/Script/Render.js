@@ -9,3 +9,11 @@ function renderInit() {
     context.fillRect(0, 0, 1280, 800)
     context.fillStyle = 'Black'
 }
+
+function strokeRect(rect) {
+    context.strokeRect(rect[0], rect[1], rect[2], rect[3])
+}
+
+function fillText(text, pos) {
+    context.fillText(text, pos[0], pos[1])
+}
