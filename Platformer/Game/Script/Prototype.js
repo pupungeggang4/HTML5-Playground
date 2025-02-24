@@ -2,11 +2,16 @@ class Thing {
     rect = null
     
     constructor() {
-
     }
 
     simpleRender() {
-        strokeRect()
+        strokeRectCenter(this.rect, camera)
+    }
+}
+
+class Camera {
+    constructor() {
+        this.position = new Vector2D(0, 0)
     }
 }
 
@@ -18,7 +23,7 @@ class Player extends Thing {
 }
 
 class Platform extends Thing {
-
+    
 }
 
 class Field {
@@ -32,6 +37,6 @@ class Field {
     }
 
     simpleRender() {
-        
+        player.simpleRender()
     }
 }

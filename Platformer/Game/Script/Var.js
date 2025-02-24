@@ -13,3 +13,8 @@ let menu = false
 let cursor = {
     title: 0,
 }
+
+let game
+let player
+let field
+let camera

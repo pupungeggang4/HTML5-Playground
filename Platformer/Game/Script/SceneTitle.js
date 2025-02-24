@@ -11,9 +11,18 @@ function renderTitle() {
 }
 
 function keyDownTitle(key) {
-
+    if (menu === false) {
+        if (state === '') {
+            if (key === 'e') {
+                if (cursor.title === 0) {
+                    scene = 'platformer'
+                    state = ''
+                }
+            }
+        }
+    }
 }
 
-function keyUpTitle() {
+function keyUpTitle(key) {
 
 }
