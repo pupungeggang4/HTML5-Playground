@@ -14,6 +14,10 @@ function strokeRect(rect) {
     context.strokeRect(rect[0], rect[1], rect[2], rect[3])
 }
 
+function strokeRectCenter(rect, camera) {
+
+}
+
 function fillText(text, pos) {
     context.fillText(text, pos[0], pos[1])
 }
