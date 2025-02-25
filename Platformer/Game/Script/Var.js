@@ -10,6 +10,10 @@ let scene = 'title'
 let state = 'start'
 let menu = false
 
+let keyPress = {
+    'left': false, 'right': false, 'up': false, 'down': false
+}
+
 let cursor = {
     title: 0,
 }

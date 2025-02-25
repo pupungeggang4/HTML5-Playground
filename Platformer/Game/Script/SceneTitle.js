@@ -7,7 +7,7 @@ function renderTitle() {
     fillText(`Platformer Game`, UI.title.textTitle)
     fillText(`Start Game`, UI.title.textStart)
     fillText(`Erase Data`, UI.title.textErase)
-    strokeRect([UI.title.arrow[0][0], UI.title.arrow[0][1], 80, 80])
+    strokeRect([UI.title.arrow[cursor.title][0], UI.title.arrow[cursor.title][1], 80, 80])
 }
 
 function keyDownTitle(key) {
@@ -18,6 +18,10 @@ function keyDownTitle(key) {
                     scene = 'platformer'
                     state = ''
                 }
+            } else if (key === 'w') {
+                cursor.title = (cursor.title + 1) % 2
+            } else if (key === 's') {
+                cursor.title = (cursor.title + 1) % 2
             }
         }
     }

@@ -1,4 +1,9 @@
 function loopPlatformer() {
+    if (menu === false) {
+        if (state === '') {
+            game.handleFrame()
+        }
+    }
     renderPlatformer()
 }
 

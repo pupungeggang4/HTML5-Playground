@@ -4,4 +4,8 @@ class GameManager {
         player = new Player()
         field = new Field()
     }
+
+    handleFrame() {
+        player.move()
+    }
 }
