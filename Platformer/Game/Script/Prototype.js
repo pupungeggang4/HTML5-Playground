@@ -41,20 +41,26 @@ class Player extends Thing {
 }
 
 class Platform extends Thing {
-    
+    constructor(rectVar) {
+        super()
+        this.rect = new Rect2D(rectVar[0], rectVar[1], rectVar[2], rectVar[3])
+    }
 }
 
 class Field {
     thingList = []
 
     constructor() {
-        this.thingList = []
+        this.thingList = [new Platform([800, 200, 160, 40]), new Platform([160, 200, 160, 40])]
     }
 
     render() {
     }
 
     simpleRender() {
+        for (let i = 0; i < this.thingList.length; i++) {
+            this.thingList[i].simpleRender()
+        }
         player.simpleRender()
     }
 }
