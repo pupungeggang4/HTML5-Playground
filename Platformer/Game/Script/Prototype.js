@@ -13,6 +13,11 @@ class Camera {
     constructor() {
         this.position = new Vector2D(0, 0)
     }
+
+    followTarget(target) {
+        this.position.x = target.rect.position.x - 640
+        this.position.y = target.rect.position.y - 400
+    }
 }
 
 class Player extends Thing {

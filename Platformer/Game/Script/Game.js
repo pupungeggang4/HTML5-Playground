@@ -7,5 +7,6 @@ class GameManager {
 
     handleFrame() {
         player.move()
+        camera.followTarget(player)
     }
 }
