@@ -9,6 +9,7 @@ function main() {
     window.addEventListener('keydown', keyDown, false)
     window.addEventListener('keyup', keyUp, false)
 
+    debugElement = document.getElementById('debug')
     game = new GameManager()
 
     frameCurrent = Date.now()

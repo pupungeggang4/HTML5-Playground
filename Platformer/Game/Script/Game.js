@@ -6,7 +6,8 @@ class GameManager {
     }
 
     handleFrame() {
-        player.move()
+        player.handleTick()
+        field.handleTick()
         camera.followTarget(player)
     }
 }

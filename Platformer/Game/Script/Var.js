@@ -10,6 +10,8 @@ let scene = 'title'
 let state = 'start'
 let menu = false
 
+let debugElement
+
 let keyPress = {
     'left': false, 'right': false, 'up': false, 'down': false
 }
