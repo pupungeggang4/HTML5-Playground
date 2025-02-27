@@ -2,6 +2,7 @@
 
 Handling player hand and deck.  
 Handling card playing.  
+Handling attack.  
 
 ## Implementing Cards.
 

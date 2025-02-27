@@ -4,18 +4,14 @@ window.oncontextmenu = rightClick
 
 function main() {
     renderElement = document.getElementById('field')
-    gameInit()
+    game = new Game()
     gameLoop = requestAnimationFrame(loop)
 }
 
 function loop() {
+    field.handleFrame()
     render()
     gameLoop = requestAnimationFrame(loop)
-}
-
-function gameInit() {
-    field = new Field()
-    player = new Player()
 }
 
 function errorHandle(err, url, line, col, obj) {

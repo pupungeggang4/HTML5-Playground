@@ -1,3 +1,4 @@
 function testThing() {
-    console.log(123)
+    let str = document.getElementById('testinput').value
+    console.log(str)
 }
