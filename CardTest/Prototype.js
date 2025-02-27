@@ -1,4 +1,6 @@
 class Card {
+    energy = []
+
     constructor() {
 
     }
@@ -31,10 +33,6 @@ class Unit extends FieldThing {
         this.baseAttack = 2
         this.hp = 3
     }
-
-    handleFrame() {
-        this.attack = this.baseAttack
-    }
 }
 
 class Leader extends Unit {
@@ -56,12 +54,12 @@ class Field {
         this.unitList = [
             new Leader(),
             new Unit(), new EmptyUnit(), new EmptyUnit(), new EmptyUnit(), new EmptyUnit(), new EmptyUnit(),
-            new Unit(), new EmptyUnit(), new EmptyUnit(), new EmptyUnit(), new EmptyUnit(), new EmptyUnit(),
+            new Unit(), new Unit(), new EmptyUnit(), new EmptyUnit(), new EmptyUnit(), new EmptyUnit(),
             new Leader()
         ]
 
-        this.unitList[7].baseAttack = 10
-        this.unitList[7].ability = [['AttackBuff', [], 3]]
+        this.unitList[7].baseAttack = 1
+        this.unitList[7].ability = [['AttackBuff', [], 4]]
     }
 
     render() {
@@ -80,8 +78,28 @@ class Field {
     }
 
     handleFrame() {
+        let tempStack = []
+
         for (let i = 0; i < 14; i++) {
-            this.unitList[i].handleFrame()
+            let unit = this.unitList[i]
+            if (unit instanceof Unit || unit instanceof Leader) {
+                unit.attack = unit.baseAttack
+                for (let i = 0; i < unit.ability.length; i++) {
+                    if (unit.ability[i][0] === 'AttackBuff') {
+                        tempStack.push(JSON.parse(JSON.stringify(unit.ability[i])))
+                    }
+                }
+            }
+        }
+
+        for (let i = 0; i < tempStack.length; i++) {
+            if (tempStack[i][0] === 'AttackBuff') {
+                for (let j = 7; j < 13; j++) {
+                    if (this.unitList[j] instanceof Unit) {
+                        this.unitList[j].attack += tempStack[i][2]
+                    }
+                }
+            }
         }
     }
 }
