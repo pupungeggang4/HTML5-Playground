@@ -9,6 +9,7 @@ function main() {
 }
 
 function loop() {
+    game.handleFrame()
     field.handleFrame()
     render()
     gameLoop = requestAnimationFrame(loop)

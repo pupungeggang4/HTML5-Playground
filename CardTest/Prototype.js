@@ -1,8 +1,17 @@
 class Card {
+    type = ''
     energy = []
+    attack = 0
+    hp = 0
+    statement = []
+    description = ''
 
-    constructor() {
-
+    constructor(ID) {
+        let data = JSON.parse(JSON.stringify(dataCard[ID]))
+        this.type = data['type']
+        this.energy = data['energy']
+        this.statement = data['statement']
+        this.description = JSON.parse(JSON.stringify(dataDescription[ID]['description']))
     }
 }
 
@@ -28,18 +37,17 @@ class Unit extends FieldThing {
     hp = 0
     ability = []
 
-    constructor() {
+    constructor(unitInfo) {
         super()
-        this.baseAttack = 2
-        this.hp = 3
+        this.baseAttack = unitInfo[0]
+        this.hp = unitInfo[1]
+        this.ability = unitInfo[2]
     }
 }
 
 class Leader extends Unit {
-    constructor() {
-        super()
-        this.attack = 0
-        this.hp = 30
+    constructor(unitInfo) {
+        super(unitInfo)
     }
 
     handleFrame() {
@@ -52,14 +60,11 @@ class Field {
 
     constructor() {
         this.unitList = [
-            new Leader(),
-            new Unit(), new EmptyUnit(), new EmptyUnit(), new EmptyUnit(), new EmptyUnit(), new EmptyUnit(),
-            new Unit(), new Unit(), new EmptyUnit(), new EmptyUnit(), new EmptyUnit(), new EmptyUnit(),
-            new Leader()
+            new Leader([0, 20, []]),
+            new Unit([1, 2, []]), new EmptyUnit(), new EmptyUnit(), new EmptyUnit(), new EmptyUnit(), new EmptyUnit(),
+            new Unit([1, 2, []]), new Unit([1, 2, [['AttackBuff', [], 4]]]), new EmptyUnit(), new EmptyUnit(), new EmptyUnit(), new EmptyUnit(),
+            new Leader([0, 30, []])
         ]
-
-        this.unitList[7].baseAttack = 1
-        this.unitList[7].ability = [['AttackBuff', [], 4]]
     }
 
     render() {
@@ -106,15 +111,30 @@ class Field {
 
 class Player {
     hand = []
+    energy = []
+    deck = []
 
-    constuctor() {
-        this.hand = []
+    constructor() {
+        this.hand = [new Card(1), new Card(1)]
+    }
+
+    playCard(index, game) {
+        let statements = JSON.parse(JSON.stringify(this.hand[index].statement))
+        for (let i = 0; i < statements.length; i++){
+            game.statementStack.push(statements[i])
+        }
+        console.log(game.statementStack)
     }
 
     render() {
+        renderHTML += '== Energy ==<br>'
+        for (let i = 0; i < this.energy.length; i++) {
+
+        }
         renderHTML += '== Hand ==<br>'
         for (let i = 0; i < this.hand.length; i++) {
-            renderHTML += `<br>`
+            let card = this.hand[i]
+            renderHTML += `${JSON.stringify(card.energy)}|${card.attack}/${card.hp}|${JSON.stringify(card.statement)}<br>`
         }
     }
 }

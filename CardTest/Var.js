@@ -4,5 +4,7 @@ let field
 
 let gameLoop
 
+let state = ''
+
 let renderElement
 let renderHTML
