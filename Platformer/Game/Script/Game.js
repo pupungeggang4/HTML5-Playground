@@ -9,5 +9,6 @@ class GameManager {
         player.handleTick()
         field.handleTick()
         camera.followTarget(player)
+        debugElement.innerHTML = player.ground
     }
 }

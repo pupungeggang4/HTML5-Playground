@@ -13,7 +13,13 @@ function renderPlatformer() {
 }
 
 function keyDownPlatformer(key) {
-
+    if (menu === false) {
+        if (state === '') {
+            if (key === ' ') {
+                player.jump()
+            }
+        }
+    }
 }
 
 function keyUpPlatformer(key) {

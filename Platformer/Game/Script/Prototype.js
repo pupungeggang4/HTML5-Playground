@@ -23,16 +23,28 @@ class Camera {
 class Player extends Thing {
     speed = 200.0
     terminalSpeed = 800.0
-    gAcceler = 400.0
+    gAcceler = 1600.0
+
+    jumpPower = -1000.0
+    jumpNum = 0
+    ground = false
     velocity = 0
 
     constructor() {
         super()
-        this.rect = new Rect2D(600, 0, 80, 80)
+        this.rect = new Rect2D(640, 3260, 80, 80)
         this.velocity = new Vector2D(0, 0)
     }
 
+    jump() {
+        if (this.jumpNum > 0 && this.ground == true) {
+            this.velocity.y = this.jumpPower
+            this.jumpNum -= 1
+        }
+    }
+
     move() {
+        this.ground = false
         this.velocity.x = 0
         //this.velocity.y = 0
 
@@ -68,8 +80,10 @@ class Wall extends Thing {
         let vc = vCollideCheck(player.rect, this.rect)
         if (vc != 0) {
             player.rect.position.y -= vc
-            if (player.velocity.y > 0) {
-                player.velocity.y = 0
+            player.velocity.y = 0
+            if (vc > 0) {
+                player.ground = true
+                player.jumpNum = 1
             }
         }
     }
@@ -120,12 +134,28 @@ class Platform extends Thing {
                 player.velocity.y = 0
             }
             this.supportingPlayer = true
+            player.ground = true
+            player.jumpNum = 1
         }
     }
 
     handleTick() {
-        this.move(player)
         this.support(player)
+        this.move(player)
+    }
+
+    simpleRender() {
+        strokeRectCenter(this.rect, camera)
+        context.beginPath()
+
+        context.moveTo(this.path[0].x - camera.position.x, this.path[0].y - camera.position.y)
+
+        for (let i = 0; i < this.path.length; i++) {
+            context.lineTo(this.path[i].x - camera.position.x, this.path[i].y - camera.position.y)
+        }
+
+        context.closePath()
+        context.stroke()
     }
 }
 
@@ -133,7 +163,7 @@ class Field {
     thingList = []
 
     constructor() {
-        this.thingList = [new Platform([800, 200, 160, 40], [[800, 200], [200, 200]]), new Platform([560, 400, 160, 40], [[560, 400]]), new Wall([200, 600, 200, 200])]
+        this.thingList = [new Wall([640, 3500, 800, 200]), new Platform([320, 3200, 160, 40], [[320, 3200], [960, 3200]]), new Platform([960, 3000, 160, 40], [[960, 3000], [320, 3000]]), new Platform([320, 2800, 160, 40], [[320, 2800], [960, 2800]]), new Platform([960, 2600, 160, 40], [[960, 2600], [320, 2400]])]
     }
 
     render() {
