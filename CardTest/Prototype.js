@@ -4,6 +4,7 @@ class Card {
     attack = 0
     hp = 0
     statement = []
+    property = []
     description = ''
 
     constructor(ID) {
@@ -11,7 +12,24 @@ class Card {
         this.type = data['type']
         this.energy = data['energy']
         this.statement = data['statement']
+        this.property = data['property']
+
+        if (this.type === 'unit') {
+            this.attack = data['stat'][0]
+            this.hp = data['stat'][1]
+        }
         this.description = JSON.parse(JSON.stringify(dataDescription[ID]['description']))
+    }
+}
+
+class Energy {
+    energy = []
+    statement = []
+
+    constructor(ID) {
+        let data = JSON.parse(JSON.stringify(dataEnergy[ID]))
+        this.energy = data['energy']
+        this.statement = data['statement']
     }
 }
 
@@ -112,28 +130,78 @@ class Field {
 class Player {
     hand = []
     energy = []
+    energyPay = []
     deck = []
+    cardPlaying = []
+
+    handMax = 8
 
     constructor() {
-        this.hand = [new Card(1), new Card(1)]
+        this.hand = [new Card(1), new Card(1), new Card(2), new Card(2)]
+        this.deck = [new Card(1)]
+        this.energy = [new Energy(1), new Energy(1)]
+    }
+
+    drawCard(cond) {
+        if (cond === '') {
+            if (this.hand.length < this.handMax) {
+                if (this.deck.length > 0) {
+                    this.hand.push(this.deck.shift())
+                }
+            }
+        }
+    }
+
+    payEnergy(card) {
+        let eindex = 0
+
+        for (let i = this.energy.length - 1; i >= 0; i--) {
+            if (card.energy[eindex] === 'any') {
+                this.energyPay.push(this.energy.splice(i, 1)[0])
+                eindex += 1
+            }
+
+            if (eindex >= card.energy.length) {
+                return true
+            }
+        }
+
+        for (let i = this.energyPay.length - 1; i >= 0; i--) {
+            this.energy.push(this.energyPay.splice(i, 1)[0])
+        }
+
+        return false
     }
 
     playCard(index, game) {
-        let statements = JSON.parse(JSON.stringify(this.hand[index].statement))
-        for (let i = 0; i < statements.length; i++){
-            game.statementStack.push(statements[i])
+        if (this.payEnergy(this.hand[index])) { 
+            let statements = JSON.parse(JSON.stringify(this.hand[index].statement))
+            if (this.hand[index].type === 'unit') {
+                game.statementStack.push(['input', 'x', 'player_empty'])
+                game.statementStack.push(['summon', 'x', [this.hand[index].attack, this.hand[index].hp, [this.hand[index].property]]])
+            }
+            for (let i = 0; i < statements.length; i++){
+                game.statementStack.push(statements[i])
+            }
+            this.cardPlaying.push([index, this.hand.splice(index, 1)[0]])
+            game.env = {}
+            console.log(game.statementStack)
         }
-        console.log(game.statementStack)
     }
 
     render() {
         renderHTML += '== Energy ==<br>'
         for (let i = 0; i < this.energy.length; i++) {
-
+            renderHTML += `${this.energy[i].energy}<br>`
         }
         renderHTML += '== Hand ==<br>'
         for (let i = 0; i < this.hand.length; i++) {
             let card = this.hand[i]
+            renderHTML += `${JSON.stringify(card.energy)}|${card.attack}/${card.hp}|${JSON.stringify(card.statement)}<br>`
+        }
+        renderHTML += '== Deck ==<br>'
+        for (let i = 0; i < this.deck.length; i++) {
+            let card = this.deck[i]
             renderHTML += `${JSON.stringify(card.energy)}|${card.attack}/${card.hp}|${JSON.stringify(card.statement)}<br>`
         }
     }
