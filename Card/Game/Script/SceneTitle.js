@@ -6,9 +6,9 @@ function renderTitle() {
     renderInit()
     fillText('Card Game', UI.title.textTitle)
     strokeRect(UI.title.buttonStart)
-    fillText('Start Game', UI.title.textStart)
+    fillText('Start Game [E]', UI.title.textStart)
     strokeRect(UI.title.buttonErase)
-    fillText('Erase data', UI.title.textErase)
+    fillText('Erase data [Q]', UI.title.textErase)
 }
 
 function mouseUpTitle(pos, button) {
@@ -26,7 +26,17 @@ function mouseUpTitle(pos, button) {
 }
 
 function keyDownTitle(key) {
-
+    if (menu === false) {
+        if (state === '') {
+            if (key === 'e') {
+                scene = 'field'
+                state = ''
+                game.adventureInit()
+            } else if (key === 'q') {
+                eraseData()
+            }
+        }
+    }
 }
 
 function keyUpTitle(key) {

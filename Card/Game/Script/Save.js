@@ -9,3 +9,7 @@ const emptySave = {
     equipment: [],
     item: [],
 }
+
+function eraseData() {
+    
+}

@@ -10,8 +10,25 @@ function renderInit() {
     context.fillStyle = 'Black'
 }
 
+function renderMenu() {
+    context.fillStyle = 'White'
+    fillRect(UI.menu.rect)
+    strokeRect(UI.menu.rect)
+    context.fillStyle = 'Black'
+
+    fillText('Paused', UI.menu.textPause)
+    strokeRect(UI.menu.buttonResume)
+    fillText('Resume [R]', UI.menu.textResume)
+    strokeRect(UI.menu.buttonExit)
+    fillText('Exit to title [E]', UI.menu.textExit)
+}
+
 function strokeRect(rect) {
     context.strokeRect(rect[0], rect[1], rect[2], rect[3])
+}
+
+function fillRect(rect) {
+    context.fillRect(rect[0], rect[1], rect[2], rect[3])
 }
 
 function strokeRectCamera(rect, camera) {
