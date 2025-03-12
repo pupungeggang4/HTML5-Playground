@@ -9,10 +9,15 @@ const UI = {
 
     field: {
         buttonMenu: [1220, 20, 40, 40],
+        textHelp: [4, 764],
     },
 
     battle: {
 
+    },
+
+    info: {
+        rect: [40, 40, 1200, 720],
     },
 
     menu: {

@@ -23,6 +23,13 @@ function renderMenu() {
     fillText('Exit to title [E]', UI.menu.textExit)
 }
 
+function renderInfo() {
+    context.fillStyle = 'White'
+    fillRect(UI.info.rect)
+    strokeRect(UI.info.rect)
+    context.fillStyle = 'Black'
+}
+
 function strokeRect(rect) {
     context.strokeRect(rect[0], rect[1], rect[2], rect[3])
 }
