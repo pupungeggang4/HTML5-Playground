@@ -7,5 +7,5 @@ let delta
 let gameLoop
 
 let scene = 'title'
-let state = ''
+let state = 'start'
 let menu = false
