@@ -3,5 +3,9 @@ function loopBattle() {
 }
 
 function renderBattle() {
+    renderInit()
+}
+
+function mouseUpBattle(pos, button) {
 
 }
