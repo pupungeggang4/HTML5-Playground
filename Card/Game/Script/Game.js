@@ -4,6 +4,7 @@ class GameManager {
         playerField = new PlayerField()
         battle = new Battle()
         field = new Field()
+        camera = new Camera()
         field.loadField(dataField['home_town'])
     }
 
@@ -14,5 +15,9 @@ class GameManager {
 
     handleTickField() {
         playerField.move()
+    }
+
+    handleTickBattle() {
+
     }
 }

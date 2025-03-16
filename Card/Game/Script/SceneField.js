@@ -53,6 +53,8 @@ function keyDownField(key) {
         if (state === '') {
             if (key === 'i') {
                 state = 'info'
+            } else if (key === 'e') {
+                playerField.moveField(field)
             }
         } else if (state === 'info') {
             if (key === 'i') {

@@ -42,6 +42,10 @@ function strokeRectCamera(rect, camera) {
     context.strokeRect(rect.position.x - rect.size.x / 2 - camera.x, rect.position.y - rect.size.y / 2- camera.y, rect.size.x, rect.size.y)
 }
 
+function drawImageCamera(rect, camera, img) {
+    context.drawImage(img, rect.position.x - rect.size.x / 2 - camera.x, rect.position.y - rect.size.y / 2- camera.y, rect.size.x, rect.size.y)
+}
+
 function fillText(text, pos) {
     context.fillText(text, pos[0], pos[1])
 }

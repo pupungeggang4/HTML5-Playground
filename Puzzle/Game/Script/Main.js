@@ -6,8 +6,9 @@ function main() {
     canvas = document.getElementById('screen')
     context = canvas.getContext('2d')
 
-    window.addEventListener('mouseup', mouseUp, false)
     window.addEventListener('keydown', keyDown, false)
+    window.addEventListener('keyup', keyUp, false)
+    canvas.addEventListener('mouseup', mouseUp, false)
 
     frameCurrent = Date.now()
     gameLoop = requestAnimationFrame(loop)
@@ -63,6 +64,16 @@ function keyDown(event) {
         keyDownLevelSelect(key)
     } else if (scene === 'puzzle') {
         keyDownPuzzle(key)
+    }
+}
+
+function keyUp(event) {
+    if (scene === 'title') {
+        keyUpTitle(key)
+    } else if (scene === 'levelselect') {
+        keyUpLevelSelect(key)
+    } else if (scene === 'puzzle') {
+        keyUpPuzzle(key)
     }
 }
 

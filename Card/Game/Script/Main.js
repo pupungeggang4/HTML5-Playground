@@ -10,6 +10,7 @@ function main() {
     window.addEventListener('keyup', keyUp, false)
     canvas.addEventListener('mouseup', mouseUp, false)
 
+    imageLoad()
     game = new GameManager()
 
     frameCurrent = Date.now()
@@ -106,6 +107,7 @@ function mouseUp(event) {
 
 function errorHandle(err, url, line, col, obj) {
     if (obj != null) {
+        console.log(`${url}|${line}|${col}\n${err}`)
         cancelAnimationFrame(loop)
     }
 }

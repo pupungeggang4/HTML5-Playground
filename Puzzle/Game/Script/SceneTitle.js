@@ -11,6 +11,10 @@ function renderTitle() {
     fillText('Erase Data', UI.title.textErase)
 }
 
+function keyUpTitle(key) {
+    
+}
+
 function keyDownTitle(key) {
 
 }

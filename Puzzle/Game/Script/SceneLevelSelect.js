@@ -6,6 +6,10 @@ function renderLevelSelect() {
     renderInit()
 }
 
+function keyUpLevelSelect(key) {
+    
+}
+
 function keyDownLevelSelect(key) {
 
 }
