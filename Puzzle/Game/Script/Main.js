@@ -60,7 +60,7 @@ function keyDown(event) {
 
     if (scene === 'title') {
         keyDownTitle(key)
-    } else if (scene === 'levelselect') {
+    } else if (scene === 'level_select') {
         keyDownLevelSelect(key)
     } else if (scene === 'puzzle') {
         keyDownPuzzle(key)
@@ -70,7 +70,7 @@ function keyDown(event) {
 function keyUp(event) {
     if (scene === 'title') {
         keyUpTitle(key)
-    } else if (scene === 'levelselect') {
+    } else if (scene === 'level_select') {
         keyUpLevelSelect(key)
     } else if (scene === 'puzzle') {
         keyUpPuzzle(key)
