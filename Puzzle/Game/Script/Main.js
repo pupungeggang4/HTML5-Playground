@@ -21,7 +21,7 @@ function loop() {
 
     if (scene === 'title') {
         loopTitle()
-    } else if (scene === 'levelselect') {
+    } else if (scene === 'level_select') {
         loopLevelSelect()
     } else if (scene === 'puzzle') {
         loopPuzzle()
@@ -44,7 +44,7 @@ function mouseUp(event) {
 
     if (scene === 'title') {
         mouseUpTitle(pos, button)
-    } else if (scene === 'levelselect') {
+    } else if (scene === 'level_select') {
         mouseUpLevelSelect(pos, button)
     } else if (scene === 'puzzle') {
         mouseUpPuzzle(pos, button)

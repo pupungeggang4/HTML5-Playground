@@ -24,7 +24,7 @@ function mouseUpTitle(pos, button) {
         if (menu === false) {
             if (state === '') {
                 if (pointInsideRectUI(pos, UI.title.buttonStart)) {
-                    scene = 'levelselect'
+                    scene = 'level_select'
                     state = ''
                 }
             }
