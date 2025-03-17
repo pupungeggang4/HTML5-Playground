@@ -9,12 +9,16 @@ function renderLevelSelect() {
     strokeRect(UI.levelSelect.buttonPrev)
     strokeRect(UI.levelSelect.buttonNext)
 
+    context.font = '64px neodgm'
     for (let i = 0; i < 4; i++) {
         for (let j = 0; j < 6; j++) {
             let rect = [UI.levelSelect.levelStart[0] + j * UI.levelSelect.levelInterval[0], UI.levelSelect.levelStart[1] + i * UI.levelSelect.levelInterval[1], UI.levelSelect.levelSize[0], UI.levelSelect.levelSize[1]]
+            let textPos = [UI.levelSelect.levelStart[0] + j * UI.levelSelect.levelInterval[0] + UI.levelSelect.levelText[0], UI.levelSelect.levelStart[1] + i * UI.levelSelect.levelInterval[1] + UI.levelSelect.levelText[1]]
             strokeRect(rect)
+            fillText(i * 6 + j + 1, textPos)
         }
     }
+    context.font = '32px neodgm'
 }
 
 function keyUpLevelSelect(key) {

@@ -15,5 +15,6 @@ const UI = {
         levelStart: [200, 120],
         levelSize: [80, 80],
         levelInterval: [160, 160],
+        levelText: [8, 8],
     }
 }
