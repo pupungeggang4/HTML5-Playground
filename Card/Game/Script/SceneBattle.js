@@ -3,17 +3,23 @@ function loopBattle() {
 }
 
 function renderBattle() {
+    renderInit()
+
+    if (state === 'start') {
+        renderStart()
+    }
+}
+
+function mouseUpBattle(pos, button) {
+    if (button === 0) {
+
+    }
+}
+
+function keyDownBattle(key) {
 
 }
 
-function mouseUpBattle() {
-
-}
-
-function keyDownBattle() {
-
-}
-
-function keyUpBattle() {
+function keyUpBattle(key) {
 
 }

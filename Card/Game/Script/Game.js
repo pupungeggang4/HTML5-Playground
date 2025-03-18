@@ -15,6 +15,7 @@ class GameManager {
 
     handleTickField() {
         playerField.move()
+        field.monsterCollideHandle(playerField)
     }
 
     handleTickBattle() {

@@ -30,6 +30,16 @@ function renderInfo() {
     context.fillStyle = 'Black'
 }
 
+function renderStart() {
+    context.fillStyle = 'White'
+    fillRect(UI.battle.start.rect)
+    strokeRect(UI.battle.start.rect)
+    context.fillStyle = 'Black'
+
+    strokeRect(UI.battle.start.buttonStart)
+    fillText('Start', UI.battle.start.textStart)
+}
+
 function strokeRect(rect) {
     context.strokeRect(rect[0], rect[1], rect[2], rect[3])
 }
@@ -39,7 +49,7 @@ function fillRect(rect) {
 }
 
 function strokeRectCamera(rect, camera) {
-    context.strokeRect(rect.position.x - rect.size.x / 2 - camera.x, rect.position.y - rect.size.y / 2- camera.y, rect.size.x, rect.size.y)
+    context.strokeRect(rect.position.x - rect.size.x / 2 - camera.x, rect.position.y - rect.size.y / 2 - camera.y, rect.size.x, rect.size.y)
 }
 
 function drawImageCamera(rect, camera, img) {

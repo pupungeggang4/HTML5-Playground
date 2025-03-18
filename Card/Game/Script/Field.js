@@ -103,6 +103,17 @@ class Field {
         }
     }
 
+    monsterCollideHandle(playerField) {
+        for (let i = 0; i < this.monster.length; i++) {
+            let monster = this.monster[i]
+            if (playerField.rect.position.distance(monster.rect.position) < 80) {
+                scene = 'battle'
+                state = 'start'
+                this.monster.splice(i, 1)
+            }
+        }
+    }
+
     render() {
         for (let i = 0; i < this.connection.length; i++) {
             this.connection[i].render()

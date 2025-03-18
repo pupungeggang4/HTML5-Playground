@@ -10,6 +10,16 @@ function renderInit() {
     context.fillStyle = 'Black'
 }
 
+function renderStart() {
+    context.fillStyle = 'White'
+    fillRect(UI.battle.start.rect)
+    strokeRect(UI.battle.start.rect)
+    context.fillStyle = 'Black'
+
+    strokeRect(UI.battle.start.buttonStart)
+    fillText('Start', UI.battle.start.textStart)
+}
+
 function strokeRect(rect) {
     context.strokeRect(rect[0], rect[1], rect[2], rect[3])
 }

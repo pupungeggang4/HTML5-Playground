@@ -15,7 +15,8 @@ const dataField = {
         'size': [1280, 1280],
         'spawn_point': [640, 640],
         'connection': [
-            [[80, 640], 'home_town', [1200, 640], true]
+            [[80, 640], 'home_town', [1200, 640], true],
+            [[1200, 640], 'plains_2', [80, 640], false]
         ],
         'thing': [],
         'village': false,
@@ -24,6 +25,14 @@ const dataField = {
     },
 
     'plains_2': {
-
+        'size': [1280, 1280],
+        'spawn_point': [640, 640],
+        'connection': [
+            [[80, 640], 'plains_1', [1200, 640], false],
+        ],
+        'thing': [],
+        'village': false,
+        'monster_spawn': [[320, 320], [960, 320], [320, 960], [960, 960]],
+        'monster': [],
     },
 }

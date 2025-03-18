@@ -8,12 +8,28 @@ const UI = {
     },
 
     field: {
-        buttonMenu: [1220, 20, 40, 40],
+        buttonMenu: [1160, 40, 80, 80],
         textHelp: [4, 764],
     },
 
     battle: {
+        start: {
+            rect: [40, 40, 1200, 720],
+            buttonStart: [560, 640, 160, 80],
+            textStart: [584, 664],
+        },
 
+        upper: {
+
+        },
+
+        unitArea: {
+
+        },
+
+        lower: {
+
+        },
     },
 
     info: {

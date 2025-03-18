@@ -7,7 +7,7 @@ let framePrevious
 let delta
 
 let scene = 'title'
-let state = 'start'
+let state = 'init'
 let menu = false
 
 let keyPress = {

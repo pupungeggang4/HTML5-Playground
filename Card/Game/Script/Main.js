@@ -49,7 +49,7 @@ function keyDown(event) {
         keyPress['down'] = true
     }
 
-    if (state === 'start') {
+    if (state === 'init') {
         state = ''
     }
 
@@ -92,7 +92,7 @@ function mouseUp(event) {
     let pos = {x: (event.clientX - targetRect.left) / targetRect.width * canvas.width, y: (event.clientY - targetRect.top) / targetRect.height * canvas.height}
     let button = event.button
 
-    if (state === 'start') {
+    if (state === 'init') {
         state = ''
     }
 

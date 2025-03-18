@@ -13,12 +13,10 @@ function renderTitle() {
 
 function mouseUpTitle(pos, button) {
     if (button === 0) {
-        if (menu === false) {
-            if (state === '') {
-                if (pointInsideRectUI(pos, UI.title.buttonStart)) {
-                    scene = 'battle'
-                    state = 'start'
-                }
+        if (state === '') {
+            if (pointInsideRectUI(pos, UI.title.buttonStart)) {
+                scene = 'battle'
+                state = 'start'
             }
         }
     }
