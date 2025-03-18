@@ -9,3 +9,7 @@ let gameLoop
 let scene = 'title'
 let state = 'init'
 let menu = false
+
+let player
+let field
+let game

@@ -8,6 +8,9 @@ function main() {
 
     canvas.addEventListener('mouseup', mouseUp, false)
 
+    imageLoad()
+    game = new GameHandler()
+
     frameCurrent = Date.now()
     gameLoop = requestAnimationFrame(loop)
 }

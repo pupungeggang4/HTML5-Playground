@@ -25,7 +25,21 @@ const UI = {
         },
 
         lower: {
+            textLevel: [44, 644],
+            iconLife: [120, 640],
+            textLife: [164, 644],
+            iconEnergy: [200, 640],
+            textEnergy: [244, 644],
 
+            energyBarStart: [400, 650],
+
+            buttonUpgrade: [40, 680, 80, 80],
+            textUpgrade: [44, 684],
+            handRect: [120, 680, 640, 80],
+            hand: [120, 680],
+            handInterval: [80, 0],
+            handSize: [80, 80],
+            buttonCardBack: [760, 680, 80, 80]
         },
     },
 

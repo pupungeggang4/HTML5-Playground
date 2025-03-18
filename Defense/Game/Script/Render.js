@@ -20,6 +20,26 @@ function renderStart() {
     fillText('Start', UI.battle.start.textStart)
 }
 
+function renderUpper() {
+
+}
+
+function renderLower() {
+    fillText(`Lv.${player.genLevel}`, UI.battle.lower.textLevel)
+    fillText(`${player.life}`, UI.battle.lower.textLife)
+    fillText(`${player.energy.toFixed(1)}/${player.energyMax}`, UI.battle.lower.textEnergy)
+
+    context.fillStyle = 'Orange'
+    context.fillRect(UI.battle.lower.energyBarStart[0], UI.battle.lower.energyBarStart[1], 20 * player.energy, 20)
+    context.fillStyle = 'Black'
+    context.strokeRect(UI.battle.lower.energyBarStart[0], UI.battle.lower.energyBarStart[1], 20 * player.energyMax, 20)
+
+    strokeRect(UI.battle.lower.buttonUpgrade)
+    fillText(`${player.genUpgrade}`, UI.battle.lower.textUpgrade)
+    strokeRect(UI.battle.lower.handRect)
+    strokeRect(UI.battle.lower.buttonCardBack)
+}
+
 function renderMenu() {
     context.fillStyle = 'White'
     fillRect(UI.menu.rect)

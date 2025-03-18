@@ -1,9 +1,15 @@
 function loopBattle() {
+    if (menu === false) {
+        if (state === '') {
+            game.handleTick()
+        }
+    }
     renderBattle()
 }
 
 function renderBattle() {
     renderInit()
+    renderLower()
 
     if (state === 'start') {
         renderStart()
@@ -12,6 +18,8 @@ function renderBattle() {
     if (menu === true) {
         renderMenu()
     }
+
+    strokeRect(UI.battle.buttonMenu)
 }
 
 function mouseUpBattle(pos, button) {
@@ -22,11 +30,23 @@ function mouseUpBattle(pos, button) {
             }
 
             if (state === 'start') {
-
+                if (pointInsideRectUI(pos, UI.battle.start.buttonStart)) {
+                    state = ''
+                }
             }
             
             if (state === '') {
-
+                if (pointInsideRectUI(pos, UI.battle.lower.buttonUpgrade)) {
+                    player.upgrade()
+                }
+            }
+        } else if (menu === true) {
+            if (pointInsideRectUI(pos, UI.menu.buttonResume)) {
+                menu = false
+            } else if (pointInsideRectUI(pos, UI.menu.buttonExit)) {
+                menu = false
+                scene = 'title'
+                state = ''
             }
         }
     }
