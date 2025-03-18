@@ -26,7 +26,9 @@ function renderUpper() {
 
 function renderLower() {
     fillText(`Lv.${player.genLevel}`, UI.battle.lower.textLevel)
+    drawImage(img.icon.life, UI.battle.lower.iconLife)
     fillText(`${player.life}`, UI.battle.lower.textLife)
+    drawImage(img.icon.energy, UI.battle.lower.iconEnergy)
     fillText(`${player.energy.toFixed(1)}/${player.energyMax}`, UI.battle.lower.textEnergy)
 
     context.fillStyle = 'Orange'
@@ -63,4 +65,8 @@ function fillRect(rect) {
 
 function fillText(text, pos) {
     context.fillText(text, pos[0], pos[1])
+}
+
+function drawImage(img, pos) {
+    context.drawImage(img, pos[0], pos[1])
 }
