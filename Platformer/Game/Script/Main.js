@@ -12,13 +12,13 @@ function main() {
     debugElement = document.getElementById('debug')
     game = new GameManager()
 
-    frameCurrent = Date.now()
+    frameCurrent = Math.floor(performance.now())
     gameLoop = requestAnimationFrame(loop)
 }
 
 function loop() {
     framePrevious = frameCurrent
-    frameCurrent = Date.now()
+    frameCurrent = Math.floor(performance.now())
     delta = frameCurrent - framePrevious
 
     if (scene === 'title') {

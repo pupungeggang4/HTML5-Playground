@@ -10,13 +10,13 @@ function main() {
     window.addEventListener('keyup', keyUp, false)
     canvas.addEventListener('mouseup', mouseUp, false)
 
-    frameCurrent = Date.now()
+    frameCurrent = Math.floor(performance.now())
     gameLoop = requestAnimationFrame(loop)
 }
 
 function loop() {
     framePrevious = frameCurrent
-    frameCurrent = Date.now()
+    frameCurrent = Math.floor(performance.now())
     delta = frameCurrent - framePrevious
 
     if (scene === 'title') {
