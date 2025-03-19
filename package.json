@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "electron": "^35.0.2",
     "eruda": "^3.4.1"
   }
 }
