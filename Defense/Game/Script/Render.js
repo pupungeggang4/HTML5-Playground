@@ -67,6 +67,10 @@ function fillText(text, pos) {
     context.fillText(text, pos[0], pos[1])
 }
 
+function strokeRectCenter(rect) {
+    context.strokeRect(rect.position.x - rect.size.x / 2, rect.position.y - rect.size.y / 2, rect.size.x, rect.size.y)
+}
+
 function drawImage(img, pos) {
     context.drawImage(img, pos[0], pos[1])
 }

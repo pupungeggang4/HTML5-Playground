@@ -17,6 +17,7 @@ function mouseUpTitle(pos, button) {
             if (pointInsideRectUI(pos, UI.title.buttonStart)) {
                 scene = 'battle'
                 state = 'start'
+                game.battleStart()
             }
         }
     }

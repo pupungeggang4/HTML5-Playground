@@ -10,6 +10,7 @@ function loopBattle() {
 function renderBattle() {
     renderInit()
     renderLower()
+    field.render()
 
     if (state === 'start') {
         renderStart()

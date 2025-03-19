@@ -4,6 +4,10 @@ class GameHandler {
         field = new Field()
     }
 
+    battleStart() {
+        field.battleStart()
+    }
+
     handleTick() {
         player.handleTick()
     }
