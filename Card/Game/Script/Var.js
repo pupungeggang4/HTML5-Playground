@@ -24,6 +24,7 @@ let save = {
 let game
 let player
 let playerField
+let playerBattle
 let battle
 let field
 let camera

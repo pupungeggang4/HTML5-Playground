@@ -30,12 +30,18 @@ function renderInfo() {
     context.fillStyle = 'Black'
 }
 
-function renderStart() {
+function renderBattleStart() {
     context.fillStyle = 'White'
     fillRect(UI.battle.start.rect)
     strokeRect(UI.battle.start.rect)
     context.fillStyle = 'Black'
 
+    if (state === 'start') {
+        fillText('Select start card', UI.battle.start.textTitle)
+    } else if (state === 'start_confirm') {
+        fillText('Confirm', UI.battle.start.textTitle)
+    }
+    
     strokeRect(UI.battle.start.buttonStart)
     fillText('Start', UI.battle.start.textStart)
 }

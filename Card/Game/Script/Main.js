@@ -101,7 +101,7 @@ function mouseUp(event) {
     } else if (scene === 'field') {
         mouseUpField(pos, button)
     } else if (scene === 'battle') {
-        mouesUpBattle(pos, button)
+        mouseUpBattle(pos, button)
     }
 }
 

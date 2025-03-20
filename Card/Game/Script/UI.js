@@ -13,8 +13,11 @@ const UI = {
     },
 
     battle: {
+        buttonMenu: [1160, 40, 80, 80],
+
         start: {
             rect: [40, 40, 1200, 720],
+            textTitle: [64, 64],
             buttonStart: [560, 640, 160, 80],
             textStart: [584, 664],
         },

@@ -2,6 +2,7 @@ class GameManager {
     constructor() {
         player = new Player()
         playerField = new PlayerField()
+        playerBattle = new PlayerBattle()
         battle = new Battle()
         field = new Field()
         camera = new Camera()
