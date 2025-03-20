@@ -9,6 +9,7 @@ const UI = {
 
     field: {
         buttonMenu: [1160, 40, 80, 80],
+        buttonInfo: [1160, 680, 80, 80],
         textHelp: [4, 764],
     },
 
@@ -37,6 +38,8 @@ const UI = {
 
     info: {
         rect: [40, 40, 1200, 720],
+        buttonClose: [40, 40, 40, 40],
+        textTitle: [64, 64],
     },
 
     menu: {

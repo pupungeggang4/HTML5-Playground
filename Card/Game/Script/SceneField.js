@@ -14,6 +14,7 @@ function renderField() {
 
     strokeRect(UI.field.buttonMenu)
     fillText('[WASD] Move [I] Inventory [E] Move/Interact [Esc] Menu', UI.field.textHelp)
+    strokeRect(UI.field.buttonInfo)
 
     if (state === 'info') {
         renderInfo()
@@ -31,7 +32,13 @@ function mouseUpField(pos, button) {
                 menu = true
             }
             if (state === '') {
-
+                if (pointInsideRectUI(pos, UI.field.buttonInfo)) {
+                    state = 'info'
+                }
+            } else if (state === 'info') {
+                if (pointInsideRectUI(pos, UI.info.buttonClose)) {
+                    state = ''
+                }
             }
         } else if (menu === true) {
             if (pointInsideRectUI(pos, UI.menu.buttonResume)) {

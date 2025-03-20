@@ -28,6 +28,8 @@ function renderInfo() {
     fillRect(UI.info.rect)
     strokeRect(UI.info.rect)
     context.fillStyle = 'Black'
+
+    strokeRect(UI.info.buttonClose)
 }
 
 function renderBattleStart() {
