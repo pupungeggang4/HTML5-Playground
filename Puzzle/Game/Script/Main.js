@@ -68,6 +68,8 @@ function keyDown(event) {
 }
 
 function keyUp(event) {
+    let key = event.key
+
     if (scene === 'title') {
         keyUpTitle(key)
     } else if (scene === 'level_select') {

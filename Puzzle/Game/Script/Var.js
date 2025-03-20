@@ -9,3 +9,6 @@ let gameLoop
 let scene = 'title'
 let state = 'init'
 let menu = false
+
+let page = 0
+let pageMax = 6
