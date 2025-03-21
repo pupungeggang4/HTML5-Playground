@@ -25,6 +25,13 @@ function renderMenu() {
     fillText('Exit', UI.menu.textExit)
 }
 
+function renderPuzzleUI() {
+    strokeRect(UI.puzzle.buttonLeft)
+    strokeRect(UI.puzzle.buttonRight)
+    strokeRect(UI.puzzle.buttonUp)
+    strokeRect(UI.puzzle.buttonDown)
+}
+
 function strokeRect(rect) {
     context.strokeRect(rect[0], rect[1], rect[2], rect[3])
 }
@@ -35,6 +42,10 @@ function fillRect(rect) {
 
 function strokeRectCenter(rect) {
     context.strokeRect(rect.position.x - rect.size.x / 2, rect.position.y - rect.size.y / 2, rect.size.x, rect.size.y)
+}
+
+function fillRectCenter(rect) {
+    context.fillRect(rect.position.x - rect.size.x / 2, rect.position.y - rect.size.y / 2, rect.size.x, rect.size.y)
 }
 
 function fillText(text, pos) {

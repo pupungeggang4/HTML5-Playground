@@ -6,6 +6,7 @@ function renderPuzzle() {
     renderInit()
 
     field.render()
+    renderPuzzleUI()
 
     if (menu === true) {
         renderMenu()
@@ -15,11 +16,19 @@ function renderPuzzle() {
 }
 
 function keyUpPuzzle(key) {
-    
+    if (menu === false) {
+        if (state === '') {
+            game.keyUpPuzzle(key)
+        }
+    }
 }
 
 function keyDownPuzzle(key) {
-
+    if (menu === false) {
+        if (state === '') {
+            game.keyDownPuzzle(key)
+        }
+    }
 }
 
 function mouseUpPuzzle(pos, button) {
@@ -29,6 +38,7 @@ function mouseUpPuzzle(pos, button) {
                 menu = true
             }
             if (state === '') {
+                game.mouseUpPuzzle(pos, button)
             }
         } else if (menu == true) {
             if (pointInsideRectUI(pos, UI.menu.buttonResume)) {
