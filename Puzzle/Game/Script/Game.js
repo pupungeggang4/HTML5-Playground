@@ -1,0 +1,5 @@
+class GameHandler {
+    constructor() {
+        
+    }
+}

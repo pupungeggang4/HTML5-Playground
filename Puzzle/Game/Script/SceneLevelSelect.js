@@ -48,7 +48,8 @@ function mouseUpLevelSelect(pos, button) {
                         if (pointInsideRectUI(pos, rect)) {
                             scene = 'puzzle'
                             state = ''
-                            console.log(page * 24 + i * 6 + j)
+                            console.log(page * 24 + i * 6 + j + 1)
+                            
                         }
                     }
                 }
