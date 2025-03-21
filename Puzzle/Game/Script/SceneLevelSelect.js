@@ -49,7 +49,7 @@ function mouseUpLevelSelect(pos, button) {
                             scene = 'puzzle'
                             state = ''
                             console.log(page * 24 + i * 6 + j + 1)
-                            
+                            field.loadLevel(dataLevel[page * 24 + i * 6 + j + 1])
                         }
                     }
                 }

@@ -10,6 +10,9 @@ function main() {
     window.addEventListener('keyup', keyUp, false)
     canvas.addEventListener('mouseup', mouseUp, false)
 
+    imageLoad()
+    game = new GameHandler()
+
     frameCurrent = Math.floor(performance.now())
     gameLoop = requestAnimationFrame(loop)
 }

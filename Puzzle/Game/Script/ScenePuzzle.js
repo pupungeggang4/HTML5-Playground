@@ -5,6 +5,8 @@ function loopPuzzle() {
 function renderPuzzle() {
     renderInit()
 
+    field.render()
+
     if (menu === true) {
         renderMenu()
     }

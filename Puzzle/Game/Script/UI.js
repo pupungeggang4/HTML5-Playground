@@ -20,6 +20,7 @@ const UI = {
 
     puzzle: {
         buttonMenu: [1160, 40, 80, 80],
+        cellSize: [64, 64]
     },
 
     menu: {

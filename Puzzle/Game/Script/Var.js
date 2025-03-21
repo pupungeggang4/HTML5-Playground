@@ -12,3 +12,6 @@ let menu = false
 
 let page = 0
 let pageMax = 6
+
+let game
+let field
