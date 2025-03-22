@@ -39,7 +39,12 @@ class PlayerField extends FieldElement {
 
     interact(field) {
         for (let i = 0; i < field.thing.length; i++) {
-
+            let thing = field.thing[i]
+            if (this.rect.position.distance(thing.rect.position) < 80) {
+                if (thing instanceof SaveField) {
+                    state = 'save_confirm'
+                }
+            }
         }
     }
 
@@ -76,6 +81,17 @@ class BossField extends FieldElement {
 
 }
 
+class SaveField extends FieldElement {
+    constructor(rect) {
+        super()
+        this.rect = rect
+    }
+
+    render() {
+        strokeRectCamera(this.rect, camera)
+    }
+}
+
 class ConnectionField extends FieldElement {
     constructor(rect, destination, dPosition, villageToggle) {
         super()
@@ -98,18 +114,27 @@ class Field {
     thingSize = 80
 
     loadField(data) {
-        this.size = new Vector2D(data['size'][0], data['size'][1])
-        this.village = data['village']
+        let dataCopy = JSON.parse(JSON.stringify(data))
+        this.size = new Vector2D(dataCopy['size'][0], dataCopy['size'][1])
+        this.village = dataCopy['village']
         this.connection = []
 
-        for (let i = 0; i < data['connection'].length; i++) {
-            let rect = new Rect2D(data['connection'][i][0][0], data['connection'][i][0][1], this.thingSize, this.thingSize)
-            let vector = new Vector2D(data['connection'][i][2][0], data['connection'][i][2][1])
+        for (let i = 0; i < dataCopy['connection'].length; i++) {
+            let rect = new Rect2D(dataCopy['connection'][i][0][0], dataCopy['connection'][i][0][1], this.thingSize, this.thingSize)
+            let vector = new Vector2D(dataCopy['connection'][i][2][0], dataCopy['connection'][i][2][1])
             this.connection.push(new ConnectionField(rect, data['connection'][i][1], vector, data['connection'][i][3]))
         }
 
-        this.monster_spawn = JSON.parse(JSON.stringify(data['monster_spawn']))
-        this.thing = JSON.parse(JSON.stringify(data['thing']))
+        this.thing = []
+
+        for (let i = 0; i < dataCopy['thing'].length; i++) {
+            let rect = new Rect2D(dataCopy['thing'][i]['position'][0], dataCopy['thing'][i]['position'][1], this.thingSize, this.thingSize)
+            if (dataCopy['thing'][i]['type'] == 'save') {
+                this.thing.push(new SaveField(rect))
+            }
+        }
+
+        this.monster_spawn = dataCopy['monster_spawn']
         this.monster = []
 
         if (this.village === false) {
@@ -138,6 +163,10 @@ class Field {
             this.connection[i].render()
         }
 
+        for (let i = 0; i < this.thing.length; i++) {
+            this.thing[i].render()
+        }
+
         for (let i = 0; i < this.monster.length; i++) {
             this.monster[i].render()
         }
@@ -152,5 +181,3 @@ class Camera {
         this.y = 0
     }
 }
-
-

@@ -8,13 +8,14 @@ const UI = {
     },
 
     field: {
-        buttonMenu: [1160, 40, 80, 80],
+        buttonMenu: [40, 40, 80, 80],
+        buttonInteract: [120, 680, 80, 80],
         buttonInfo: [1160, 680, 80, 80],
         textHelp: [4, 764],
     },
 
     battle: {
-        buttonMenu: [1160, 40, 80, 80],
+        buttonMenu: [40, 40, 80, 80],
 
         start: {
             rect: [40, 40, 1200, 720],
@@ -38,20 +39,33 @@ const UI = {
 
     info: {
         rect: [40, 40, 1200, 720],
-        buttonClose: [40, 40, 40, 40],
+        buttonClose: [1200, 40, 40, 40],
         textTitle: [64, 64],
 
-        buttonProfile: [40, 720, 160, 40],
-        buttonTree: [200, 720, 160, 40],
-        buttonDeckOriginal: [360, 720, 160, 40],
-        buttonDeck: [520, 720, 160, 40],
-        buttonCrystal: [680, 720, 160, 40],
-        buttonEquipment: [840, 720, 160, 40],
-        buttonMap: [1000, 720, 160, 40],
+        buttonProfile: [80, 720, 160, 40],
+        buttonTree: [240, 720, 160, 40],
+        buttonDeckOriginal: [400, 720, 160, 40],
+        buttonDeck: [560, 720, 160, 40],
+        buttonCrystal: [720, 720, 160, 40],
+        buttonEquipment: [880, 720, 160, 40],
+        buttonMap: [1040, 720, 160, 40],
 
         profile: {
-            
+            textName: [84, 84],
+            profileImage: [80, 120, 320, 320],
+            textLevel: [124, 444],
+            textExp: [124, 484],
+            textGold: [124, 524],
         }
+    },
+
+    saveWindow: {
+        rect: [320, 240, 640, 320],
+        textTitle: [364, 264],
+        buttonYes: [400, 360, 160, 80],
+        textYes: [424, 384],
+        buttonNo: [720, 360, 160, 80],
+        textNo: [744, 384],
     },
 
     menu: {

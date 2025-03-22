@@ -39,8 +39,24 @@ function renderInfo() {
     strokeRect(UI.info.buttonMap)
 
     if (infoRenderMode === 'profile') {
-        
+        strokeRect(UI.info.profile.profileImage)
+        fillText(`Lv.${player.level}`, UI.info.profile.textLevel)
+        fillText(`Exp:${player.exp}/${player.expMax}`, UI.info.profile.textExp)
+        fillText(`${player.gold}`, UI.info.profile.textGold)
     }
+}
+
+function renderSaveWindow() {
+    context.fillStyle = 'White'
+    fillRect(UI.saveWindow.rect)
+    strokeRect(UI.saveWindow.rect)
+    context.fillStyle = 'Black'
+
+    fillText(`Save data?`, UI.saveWindow.textTitle)
+    strokeRect(UI.saveWindow.buttonYes)
+    fillText(`Yes [Y]`, UI.saveWindow.textYes)
+    strokeRect(UI.saveWindow.buttonNo)
+    fillText(`No [N]`, UI.saveWindow.textNo)
 }
 
 function renderBattleStart() {

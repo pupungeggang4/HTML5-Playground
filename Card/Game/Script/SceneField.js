@@ -14,10 +14,15 @@ function renderField() {
 
     strokeRect(UI.field.buttonMenu)
     fillText('[WASD] Move [I] Inventory [E] Move/Interact [Esc] Menu', UI.field.textHelp)
+    strokeRect(UI.field.buttonInteract)
     strokeRect(UI.field.buttonInfo)
 
     if (state === 'info') {
         renderInfo()
+    }
+
+    if (state === 'save_confirm') {
+        renderSaveWindow()
     }
 
     if (menu === true) {
@@ -35,9 +40,19 @@ function mouseUpField(pos, button) {
                 if (pointInsideRectUI(pos, UI.field.buttonInfo)) {
                     state = 'info'
                     infoRenderMode = 'profile'
+                } else if (pointInsideRectUI(pos, UI.field.buttonInteract)) {
+                    playerField.interact(field)
+                    playerField.moveField(field, player)
                 }
             } else if (state === 'info') {
                 if (pointInsideRectUI(pos, UI.info.buttonClose)) {
+                    state = ''
+                }
+            } else if (state === 'save_confirm') {
+                if (pointInsideRectUI(pos, UI.saveWindow.buttonYes)) {
+                    saveData()
+                    state = ''
+                } else if (pointInsideRectUI(pos, UI.saveWindow.buttonNo)) {
                     state = ''
                 }
             }
@@ -63,11 +78,18 @@ function keyDownField(key) {
                 state = 'info'
                 infoRenderMode = 'profile'
             } else if (key === 'e') {
-                playerField.interact()
+                playerField.interact(field)
                 playerField.moveField(field, player)
             }
         } else if (state === 'info') {
             if (key === 'i') {
+                state = ''
+            }
+        } else if (state === 'save_confirm') {
+            if (key === 'y') {
+                state = ''
+                saveData()
+            } else if (key === 'n') {
                 state = ''
             }
         }

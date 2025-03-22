@@ -5,7 +5,9 @@ const dataField = {
         'connection': [
             [[1200, 640], 'plains_1', [80, 640], true],
         ],
-        'thing': [],
+        'thing': [
+            {'type': 'save', 'position': [640, 640]}
+        ],
         'village': true,
         'monster_spawn': [],
         'monster': []
