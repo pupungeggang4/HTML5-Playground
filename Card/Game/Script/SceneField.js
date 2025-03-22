@@ -13,7 +13,7 @@ function renderField() {
     field.render()
 
     strokeRect(UI.field.buttonMenu)
-    fillText('[WASD] Move [I] Inventory [E] Move/Interact [Esc] Menu', UI.field.textHelp)
+    fillText(`[WASD] Move [I] Inventory [E] Move/Interact [Esc] Menu ${playerField.place}`, UI.field.textHelp)
     strokeRect(UI.field.buttonInteract)
     strokeRect(UI.field.buttonInfo)
 
@@ -50,7 +50,7 @@ function mouseUpField(pos, button) {
                 }
             } else if (state === 'save_confirm') {
                 if (pointInsideRectUI(pos, UI.saveWindow.buttonYes)) {
-                    saveData()
+                    game.save()
                     state = ''
                 } else if (pointInsideRectUI(pos, UI.saveWindow.buttonNo)) {
                     state = ''
@@ -87,8 +87,8 @@ function keyDownField(key) {
             }
         } else if (state === 'save_confirm') {
             if (key === 'y') {
+                game.save()
                 state = ''
-                saveData()
             } else if (key === 'n') {
                 state = ''
             }

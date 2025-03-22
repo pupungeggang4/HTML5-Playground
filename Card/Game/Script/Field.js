@@ -19,6 +19,10 @@ class PlayerField extends FieldElement {
         this.rect.position.y = 640
     }
 
+    saveUpdate() {
+        save.place = this.place
+    }
+
     move(camera) {
         if (keyPress['left'] === true) {
             this.rect.position.x -= this.speed * delta / 1000
@@ -61,6 +65,7 @@ class PlayerField extends FieldElement {
                 } else if (player.adventure === true && field.village === true) {
                     player.adventureEnd()
                 }
+                break
             }
         }
     }

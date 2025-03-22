@@ -28,4 +28,10 @@ class Player {
         this.expMax = expMax[this.level]
         this.gold = save.gold
     }
+
+    saveUpdate() {
+        save.level = this.level
+        save.exp = this.exp
+        save.gold = this.gold
+    }
 }

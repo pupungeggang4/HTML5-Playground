@@ -21,4 +21,10 @@ class GameManager {
     handleTickBattle() {
 
     }
+
+    save() {
+        player.saveUpdate()
+        playerField.saveUpdate()
+        saveData()
+    }
 }
