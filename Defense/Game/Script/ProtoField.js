@@ -2,6 +2,9 @@ class Field {
     unit = []
     spawn = []
     end = []
+    time = 0
+    waveFull = []
+    wave = []
 
     constructor() {
 
@@ -14,23 +17,36 @@ class Field {
             this.spawn.push(new Spawn(new Rect2D(1000, 280 + 80 * i, 80, 80)))
             this.end.push(new End(new Rect2D(280, 280 + 80 * i, 80, 80)))
         }
-        this.spawn[0].spawnUnit({}, this)
-        this.spawn[1].spawnUnit({}, this)
-        this.spawn[2].spawnUnit({}, this)
-        this.spawn[3].spawnUnit({}, this)
+
+        this.time = 0
+        this.waveFull = JSON.parse(JSON.stringify(dataLevel[1]['wave']))
+        this.wave = JSON.parse(JSON.stringify(dataLevel[1]['wave'][1]))
     }
 
     handleTick() {
+        this.time += delta / 1000
+
         for (let i = 0; i < this.unit.length; i++) {
             this.unit[i].handleTick()
         }
 
-        for (let i = 0; i < this.spawn.length; i++) {
-            this.spawn[i].handleTick()
-        }
-
         for (let i = 0; i < this.end.length; i++) {
             this.end[i].handleTick()
+        }
+
+        this.spawnHandle()
+    }
+
+    spawnHandle() {
+        for (let i = this.wave.length - 1; i >= 0; i--) {
+            if (this.time > this.wave[i][0]) {
+                let indexes = sampleList([0, 1, 2, 3], this.wave[i][1].length)
+                console.log(indexes)
+                for (let j = 0; j < indexes.length; j++) {
+                    this.spawn[indexes[j]].spawnUnit({}, this)
+                }
+                this.wave.splice(i, 1)
+            }
         }
     }
 
