@@ -27,6 +27,9 @@ function keyDownPuzzle(key) {
     if (menu === false) {
         if (state === '') {
             game.keyDownPuzzle(key)
+        } else if (state === 'clear') {
+            scene = 'level_select'
+            state = ''
         }
     }
 }
@@ -39,6 +42,9 @@ function mouseUpPuzzle(pos, button) {
             }
             if (state === '') {
                 game.mouseUpPuzzle(pos, button)
+            } else if (state === 'clear') {
+                scene = 'level_select'
+                state = ''
             }
         } else if (menu == true) {
             if (pointInsideRectUI(pos, UI.menu.buttonResume)) {

@@ -8,6 +8,9 @@ class GameHandler {
         for (let k in this.keymap) {
             if (key === this.keymap[k]) {
                 field.player.move(k, field)
+                if (field.winCheck()) {
+                    state = 'clear'
+                }
             }
         }
     }
