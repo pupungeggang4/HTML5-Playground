@@ -12,7 +12,14 @@ class PlayerField extends FieldElement {
         this.place = 'home_town'
     }
 
-    move() {
+    loadData(field) {
+        this.place = save.place
+        field.loadField(dataField[this.place])
+        this.rect.position.x = 640
+        this.rect.position.y = 640
+    }
+
+    move(camera) {
         if (keyPress['left'] === true) {
             this.rect.position.x -= this.speed * delta / 1000
         }
@@ -30,7 +37,13 @@ class PlayerField extends FieldElement {
         camera.y = this.rect.position.y - 400
     }
 
-    moveField(field) {
+    interact(field) {
+        for (let i = 0; i < field.thing.length; i++) {
+
+        }
+    }
+
+    moveField(field, player) {
         for (let i = 0; i < field.connection.length; i++) {
             if (this.rect.position.distance(field.connection[i].rect.position) < 80) {
                 let dPlace = field.connection[i].destination
@@ -38,6 +51,11 @@ class PlayerField extends FieldElement {
                 this.rect.position = new Vector2D(dPosition.x, dPosition.y)
                 this.place = dPlace
                 field.loadField(dataField[dPlace])
+                if (player.adventure === false && field.village === false) {
+                    player.adventureInit()
+                } else if (player.adventure === true && field.village === true) {
+                    player.adventureEnd()
+                }
             }
         }
     }
@@ -83,14 +101,15 @@ class Field {
         this.size = new Vector2D(data['size'][0], data['size'][1])
         this.village = data['village']
         this.connection = []
+
         for (let i = 0; i < data['connection'].length; i++) {
             let rect = new Rect2D(data['connection'][i][0][0], data['connection'][i][0][1], this.thingSize, this.thingSize)
             let vector = new Vector2D(data['connection'][i][2][0], data['connection'][i][2][1])
             this.connection.push(new ConnectionField(rect, data['connection'][i][1], vector, data['connection'][i][3]))
         }
 
-        this.monster_spawn = data['monster_spawn']
-        this.thing = data['thing']
+        this.monster_spawn = JSON.parse(JSON.stringify(data['monster_spawn']))
+        this.thing = JSON.parse(JSON.stringify(data['thing']))
         this.monster = []
 
         if (this.village === false) {

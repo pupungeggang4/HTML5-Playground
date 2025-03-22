@@ -10,6 +10,8 @@ let scene = 'title'
 let state = 'init'
 let menu = false
 
+let infoRenderMode = 'profile'
+
 let keyPress = {
     'left': false,
     'right': false,

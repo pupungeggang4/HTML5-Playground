@@ -6,12 +6,24 @@ class Player {
         this.card = []
         this.equipment = []
         this.startDeck = []
+        this.adventure = false
+    }
+
+    adventureInit() {
+        this.adventure = true
+    }
+
+    adventureEnd() {
+        this.adventure = false
     }
 
     reset() {
         
     }
 
-    dataLoad() {
+    loadData() {
+        this.level = save.level
+        this.exp = save.exp
+        this.gold = save.gold
     }
 }

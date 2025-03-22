@@ -30,6 +30,17 @@ function renderInfo() {
     context.fillStyle = 'Black'
 
     strokeRect(UI.info.buttonClose)
+    strokeRect(UI.info.buttonProfile)
+    strokeRect(UI.info.buttonTree)
+    strokeRect(UI.info.buttonDeckOriginal)
+    strokeRect(UI.info.buttonDeck)
+    strokeRect(UI.info.buttonCrystal)
+    strokeRect(UI.info.buttonEquipment)
+    strokeRect(UI.info.buttonMap)
+
+    if (infoRenderMode === 'profile') {
+        
+    }
 }
 
 function renderBattleStart() {

@@ -18,7 +18,7 @@ function mouseUpTitle(pos, button) {
                 if (pointInsideRectUI(pos, UI.title.buttonStart)) {
                     scene = 'field'
                     state = ''
-                    game.adventureInit()
+                    game.gameInit()
                 }
             }
         }
@@ -31,7 +31,7 @@ function keyDownTitle(key) {
             if (key === 'e') {
                 scene = 'field'
                 state = ''
-                game.adventureInit()
+                game.gameInit()
             } else if (key === 'q') {
                 eraseData()
             }

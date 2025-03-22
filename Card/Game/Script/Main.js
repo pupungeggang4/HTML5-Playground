@@ -10,6 +10,7 @@ function main() {
     window.addEventListener('keyup', keyUp, false)
     canvas.addEventListener('mouseup', mouseUp, false)
 
+    saveInit()
     imageLoad()
     game = new GameManager()
 

@@ -40,6 +40,18 @@ const UI = {
         rect: [40, 40, 1200, 720],
         buttonClose: [40, 40, 40, 40],
         textTitle: [64, 64],
+
+        buttonProfile: [40, 720, 160, 40],
+        buttonTree: [200, 720, 160, 40],
+        buttonDeckOriginal: [360, 720, 160, 40],
+        buttonDeck: [520, 720, 160, 40],
+        buttonCrystal: [680, 720, 160, 40],
+        buttonEquipment: [840, 720, 160, 40],
+        buttonMap: [1000, 720, 160, 40],
+
+        profile: {
+            
+        }
     },
 
     menu: {

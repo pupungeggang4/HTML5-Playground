@@ -34,6 +34,7 @@ function mouseUpField(pos, button) {
             if (state === '') {
                 if (pointInsideRectUI(pos, UI.field.buttonInfo)) {
                     state = 'info'
+                    infoRenderMode = 'profile'
                 }
             } else if (state === 'info') {
                 if (pointInsideRectUI(pos, UI.info.buttonClose)) {
@@ -60,8 +61,10 @@ function keyDownField(key) {
         if (state === '') {
             if (key === 'i') {
                 state = 'info'
+                infoRenderMode = 'profile'
             } else if (key === 'e') {
-                playerField.moveField(field)
+                playerField.interact()
+                playerField.moveField(field, player)
             }
         } else if (state === 'info') {
             if (key === 'i') {
