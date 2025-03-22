@@ -10,5 +10,6 @@ class GameHandler {
 
     handleTick() {
         player.handleTick()
+        field.handleTick()
     }
 }
