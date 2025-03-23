@@ -43,6 +43,11 @@ const UI = {
         },
     },
 
+    card: {
+        size: [80, 80],
+        textEnergy: [4, 4]
+    },
+
     menu: {
         rect: [320, 280, 640, 240],
         textPause: [344, 304],

@@ -32,14 +32,13 @@ function mouseUpBattle(pos, button) {
 
             if (state === 'start') {
                 if (pointInsideRectUI(pos, UI.battle.start.buttonStart)) {
+                    game.battleStart()
                     state = ''
                 }
             }
             
             if (state === '') {
-                if (pointInsideRectUI(pos, UI.battle.lower.buttonUpgrade)) {
-                    player.upgrade()
-                }
+                game.handleMouseUp(pos, button)
             }
         } else if (menu === true) {
             if (pointInsideRectUI(pos, UI.menu.buttonResume)) {

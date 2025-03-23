@@ -1,5 +1,12 @@
 class Field {
-    unit = []
+    unitPlayer = []
+    unitPlayerTower = [
+        [new Empty(), new Empty(), new Empty(), new Empty(), new Empty(), new Empty(), new Empty(), new Empty(), new Empty(), new Empty()],
+        [new Empty(), new Empty(), new Empty(), new Empty(), new Empty(), new Empty(), new Empty(), new Empty(), new Empty(), new Empty()],
+        [new Empty(), new Empty(), new Empty(), new Empty(), new Empty(), new Empty(), new Empty(), new Empty(), new Empty(), new Empty()],
+        [new Empty(), new Empty(), new Empty(), new Empty(), new Empty(), new Empty(), new Empty(), new Empty(), new Empty(), new Empty()]
+    ]
+    unitEnemy = []
     spawn = []
     end = []
     time = 0
@@ -14,8 +21,8 @@ class Field {
         this.spawn = []
         this.end = []
         for (let i = 0; i < 4; i++) {
-            this.spawn.push(new Spawn(new Rect2D(1000, 280 + 80 * i, 80, 80)))
-            this.end.push(new End(new Rect2D(280, 280 + 80 * i, 80, 80)))
+            this.spawn.push(new Spawn(new Rect2D(1080, 280 + 80 * i, 80, 80)))
+            this.end.push(new End(new Rect2D(200, 280 + 80 * i, 80, 80)))
         }
 
         this.time = 0
@@ -26,8 +33,8 @@ class Field {
     handleTick() {
         this.time += delta / 1000
 
-        for (let i = 0; i < this.unit.length; i++) {
-            this.unit[i].handleTick()
+        for (let i = 0; i < this.unitEnemy.length; i++) {
+            this.unitEnemy[i].handleTick()
         }
 
         for (let i = 0; i < this.end.length; i++) {
@@ -43,7 +50,7 @@ class Field {
                 let indexes = sampleList([0, 1, 2, 3], this.wave[i][1].length)
                 console.log(indexes)
                 for (let j = 0; j < indexes.length; j++) {
-                    this.spawn[indexes[j]].spawnUnit({}, this)
+                    this.spawn[indexes[j]].spawnUnit(dataUnit[this.wave[i][1][j]], this)
                 }
                 this.wave.splice(i, 1)
             }
@@ -51,6 +58,13 @@ class Field {
     }
 
     render() {
+        for (let i = 0; i < 4; i++) {
+            for (let j = 0; j < 10; j++) {
+                let rect = new Rect2D(280 + 80 * j, 280 + 80 * i, 80, 80)
+                strokeRectCenter(rect)
+            }
+        }
+
         for (let i = 0; i < this.spawn.length; i++) {
             this.spawn[i].render()
         }
@@ -59,17 +73,17 @@ class Field {
             this.end[i].render()
         }
 
-        for (let i = 0; i < this.unit.length; i++) {
-            this.unit[i].render()
+        for (let i = 0; i < this.unitEnemy.length; i++) {
+            this.unitEnemy[i].render()
         }
-    }
-}
 
-class Level {
-    wave = []
-
-    constructor() {
-        
+        for (let i = 0; i < this.unitPlayerTower.length; i++) {
+            for (let j = 0; j < this.unitPlayerTower[0].length; j++) {
+                if (this.unitPlayerTower[i][j] instanceof Tower) {
+                    this.unitPlayerTower[i][j].render()
+                }
+            }
+        }
     }
 }
 
@@ -78,12 +92,11 @@ class Spawn {
         this.rect = rect
     }
 
-    spawnUnit(unitInfo, field) {
-        let unit = new Unit()
+    spawnUnit(unitData, field) {
+        let unit = new Unit(unitData)
         unit.rect.size = new Vector2D(40, 40)
         unit.rect.position = new Vector2D(this.rect.position.x, this.rect.position.y)
-        unit.side = 1
-        field.unit.push(unit)
+        field.unitEnemy.push(unit)
     }
 
     handleTick() {
@@ -105,12 +118,10 @@ class End {
     }
 
     detectEnemy(field, player) {
-        for (let i = field.unit.length - 1; i >= 0; i--) {
-            if (this.rect.position.distance(field.unit[i].rect.position) < 10) {
-                if (field.unit[i].side === 1) {
-                    field.unit.splice(i, 1)
-                    player.life -= 1
-                }
+        for (let i = field.unitEnemy.length - 1; i >= 0; i--) {
+            if (this.rect.position.distance(field.unitEnemy[i].rect.position) < 10) {
+                field.unitEnemy.splice(i, 1)
+                player.life -= 1
             }
         }
     }

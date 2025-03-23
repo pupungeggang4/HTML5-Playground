@@ -31,10 +31,10 @@ function loop() {
 
 function mouseUp(event) {
     let targetRect = canvas.getBoundingClientRect()
-    let pos = {
-        x: (event.clientX - targetRect.left) / targetRect.width * canvas.width,
-        y: (event.clientY - targetRect.top) / targetRect.height * canvas.height
-    }
+    let pos = new Vector2D(
+        (event.clientX - targetRect.left) / targetRect.width * canvas.width,
+        (event.clientY - targetRect.top) / targetRect.height * canvas.height
+    )
     let button = event.button
 
     if (state === 'init') {

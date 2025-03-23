@@ -8,6 +8,7 @@ let gameLoop
 
 let scene = 'title'
 let state = 'init'
+let clickState = ''
 let menu = false
 
 let player

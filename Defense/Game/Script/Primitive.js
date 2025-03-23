@@ -22,6 +22,13 @@ class Rect2D {
         this.position = new Vector2D(x, y)
         this.size = new Vector2D(w, h)
     }
+
+    setRect(x, y, w, h) {
+        this.position.x = x
+        this.position.y = y
+        this.size.x = w
+        this.size.y = h
+    }
 }
 
 class Circle2D {

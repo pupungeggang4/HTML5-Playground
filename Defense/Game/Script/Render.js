@@ -39,6 +39,11 @@ function renderLower() {
     strokeRect(UI.battle.lower.buttonUpgrade)
     fillText(`${player.genUpgrade}`, UI.battle.lower.textUpgrade)
     strokeRect(UI.battle.lower.handRect)
+
+    for (let i = 0; i < player.hand.length; i++) {
+        player.hand[i].render([UI.battle.lower.hand[0] + UI.battle.lower.handInterval[0] * i, UI.battle.lower.hand[1]])
+    }
+
     strokeRect(UI.battle.lower.buttonCardBack)
 }
 
@@ -69,6 +74,10 @@ function fillText(text, pos) {
 
 function strokeRectCenter(rect) {
     context.strokeRect(rect.position.x - rect.size.x / 2, rect.position.y - rect.size.y / 2, rect.size.x, rect.size.y)
+}
+
+function fillRectCenter(rect) {
+    context.fillRect(rect.position.x - rect.size.x / 2, rect.position.y - rect.size.y / 2, rect.size.x, rect.size.y)
 }
 
 function drawImage(img, pos) {
