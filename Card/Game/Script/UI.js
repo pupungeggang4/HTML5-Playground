@@ -33,7 +33,8 @@ const UI = {
         },
 
         lower: {
-
+            card: [],
+            crystal: [],
         },
     },
 

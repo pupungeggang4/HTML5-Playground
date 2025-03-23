@@ -1,6 +1,7 @@
 class Battle {
     turn = 1
     unit = []
+    monsterID = -1
 
     constructor() {
         this.unit = [

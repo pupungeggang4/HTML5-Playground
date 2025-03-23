@@ -8,7 +8,7 @@ class PlayerField extends FieldElement {
     constructor() {       
         super()
         this.rect = new Rect2D(0, 0, 80, 80)
-        this.speed = 320
+        this.speed = 480
         this.place = 'home_town'
     }
 
@@ -23,19 +23,37 @@ class PlayerField extends FieldElement {
         save.place = this.place
     }
 
-    move(camera) {
+    move(camera, field) {
+        let temp = new Rect2D(this.rect.position.x, this.rect.position.y, this.rect.size.x, this.rect.size.y)
+
         if (keyPress['left'] === true) {
-            this.rect.position.x -= this.speed * delta / 1000
+            temp.position.x -= this.speed * delta / 1000
         }
         if (keyPress['right'] === true) {
-            this.rect.position.x += this.speed * delta / 1000
+            temp.position.x += this.speed * delta / 1000
         }
         if (keyPress['up'] === true) {
-            this.rect.position.y -= this.speed * delta / 1000
+            temp.position.y -= this.speed * delta / 1000
         }
         if (keyPress['down'] === true) {
-            this.rect.position.y += this.speed * delta / 1000
+            temp.position.y += this.speed * delta / 1000
         }
+
+        if (temp.position.x < 40) {
+            temp.position.x = 40
+        }
+        if (temp.position.x > field.size.x - 40) {
+            temp.position.x = field.size.x - 40
+        }
+        if (temp.position.y < 40) {
+            temp.position.y = 40
+        }
+        if (temp.position.y > field.size.y - 40) {
+            temp.position.y = field.size.y - 40
+        }
+
+        this.rect.position.x = temp.position.x
+        this.rect.position.y = temp.position.y
 
         camera.x = this.rect.position.x - 640
         camera.y = this.rect.position.y - 400
@@ -66,6 +84,19 @@ class PlayerField extends FieldElement {
                     player.adventureEnd()
                 }
                 break
+            }
+        }
+    }
+
+    monsterCollideHandle(field, battle) {
+        for (let i = 0; i < field.monster.length; i++) {
+            let monster = field.monster[i]
+            if (this.rect.position.distance(monster.rect.position) < 80) {
+                scene = 'battle'
+                state = 'start'
+                field.monster.splice(i, 1)
+                let index = Math.floor(Math.random() * field.monsterID.length)
+                battle.monsterID = field.monsterID[index]
             }
         }
     }
@@ -139,26 +170,16 @@ class Field {
             }
         }
 
-        this.monster_spawn = dataCopy['monster_spawn']
+        this.monsterSpawn = dataCopy['monster_spawn']
+        this.monsterID = dataCopy['monster_id']
         this.monster = []
 
         if (this.village === false) {
             for (let i = 0; i < 3; i++) {
-                let index = Math.floor(Math.random() * this.monster_spawn.length)
-                let spawn = this.monster_spawn.splice(index, 1)[0]
+                let index = Math.floor(Math.random() * this.monsterSpawn.length)
+                let spawn = this.monsterSpawn.splice(index, 1)[0]
                 let rect = new Rect2D(spawn[0], spawn[1], this.thingSize, this.thingSize)
                 this.monster.push(new MonsterField(rect))
-            }
-        }
-    }
-
-    monsterCollideHandle(playerField) {
-        for (let i = 0; i < this.monster.length; i++) {
-            let monster = this.monster[i]
-            if (playerField.rect.position.distance(monster.rect.position) < 80) {
-                scene = 'battle'
-                state = 'start'
-                this.monster.splice(i, 1)
             }
         }
     }
