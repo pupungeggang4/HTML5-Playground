@@ -8,10 +8,23 @@ class Player {
         this.equipment = []
         this.startDeck = []
         this.adventure = false
+
+        this.deck = []
+        this.crystal = []
     }
 
     adventureInit() {
         this.adventure = true
+        this.deck = []
+        this.crystal = []
+
+        for (let i = 0; i < dataDeck[1]['card'].length; i++) {
+            this.deck.push(new Card(dataCard[dataDeck[1]['card'][i]]))
+        }
+
+        for (let i = 0; i < dataDeck[1]['crystal'].length; i++) {
+            this.crystal.push(new Crystal(dataCrystal[dataDeck[1]['crystal'][i]]))
+        }
     }
 
     adventureEnd() {

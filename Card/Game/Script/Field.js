@@ -97,6 +97,7 @@ class PlayerField extends FieldElement {
                 field.monster.splice(i, 1)
                 let index = Math.floor(Math.random() * field.monsterID.length)
                 battle.monsterID = field.monsterID[index]
+                game.battleStart()
             }
         }
     }

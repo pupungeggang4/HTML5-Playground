@@ -11,10 +11,32 @@ class Battle {
             new EmptyUnit()
         ]
     }
+
+    battleStart() {
+
+    }
 }
 
 class PlayerBattle {
-    
+    constructor() {
+        this.deck = []
+        this.hand = []
+        this.crystal = []
+        this.crystalHand = []
+    }
+
+    battleStart(player) {
+        this.deck = []
+        this.crystal = []
+
+        for (let i = 0; i < player.deck.length; i++) {
+            this.deck.push(player.deck[i].clone())
+        }
+
+        for (let i = 0; i < player.crystal.length; i++) {
+            this.crystal.push(player.crystal[i].clone())
+        }
+    }
 }
 
 class Thing {

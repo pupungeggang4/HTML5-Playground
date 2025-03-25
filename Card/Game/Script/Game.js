@@ -22,6 +22,11 @@ class GameManager {
 
     }
 
+    battleStart() {
+        battle.battleStart()
+        playerBattle.battleStart(player)
+    }
+
     save() {
         player.saveUpdate()
         playerField.saveUpdate()
