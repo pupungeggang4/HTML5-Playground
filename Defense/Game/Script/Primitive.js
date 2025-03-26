@@ -17,8 +17,15 @@ class Vector2D {
     }
 }
 
-class Rect2D {
+class Shape2D {
+    constructor() {
+
+    }
+}
+
+class Rect2D extends Shape2D {
     constructor(x, y, w, h) {
+        super()
         this.position = new Vector2D(x, y)
         this.size = new Vector2D(w, h)
     }
@@ -29,10 +36,17 @@ class Rect2D {
         this.size.x = w
         this.size.y = h
     }
+
+    rectCollide(rect) {
+        let distX = Math.abs(this.position.x - rect.position.x)
+        let distY = Math.abs(this.position.y - rect.position.y)
+        return distX < (this.size.x + rect.size.x) / 2 && distY < (this.size.y + rect.size.y) / 2
+    }
 }
 
-class Circle2D {
+class Circle2D extends Shape2D {
     constructor(x, y, r) {
+        super()
         this.position = new Vector2D(x, y)
         this.radius = r
     }

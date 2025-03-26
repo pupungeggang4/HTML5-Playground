@@ -69,6 +69,10 @@ const UI = {
         textNo: [744, 384],
     },
 
+    card: {
+
+    },
+
     menu: {
         rect: [320, 280, 640, 240],
         textPause: [344, 304],

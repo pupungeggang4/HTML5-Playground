@@ -32,7 +32,6 @@ class GameHandler {
                 for (let j = 0; j < 10; j++) {
                     let tempRect = new Rect2D(280 + j * 80, 280 + i * 80, 80, 80)
                     if (pos.insideRect(tempRect)) {
-                        console.log(`${i}, ${j}`)
                         player.playCard(i, j, field)
                         clickState = ''
                     }

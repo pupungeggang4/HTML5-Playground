@@ -44,9 +44,7 @@ class Player {
     playCard(row, col, field) {
         if (this.energy >= this.hand[this.selectedIndex].energy) {
             if (this.hand[this.selectedIndex].type === 'unit') {
-                console.log(field.unitPlayerTower[row][col])
                 if (field.unitPlayerTower[row][col] instanceof Empty) {
-                    console.log(123)
                     this.summonUnit(row, col, this.hand[this.selectedIndex], field)
                     this.energy -= this.hand[this.selectedIndex].energy
                     this.hand.splice(this.selectedIndex, 1)

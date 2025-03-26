@@ -11,17 +11,21 @@ class Card {
     play = []
 
     constructor(data) {
-        let dataCopy = JSON.parse(JSON.stringify(data))
-        this.ID = dataCopy['ID']
-        this.energy = dataCopy['energy']
-        this.type = dataCopy['type']
-        this.attack = dataCopy['attack']
-        this.attackSpeed = dataCopy['attackSpeed']
-        this.weapon = dataCopy['weapon']
-        this.hp = dataCopy['hp']
-        this.speed = dataCopy['speed']
-        this.moveStyle = dataCopy['move_style']
-        this.play = dataCopy['play']
+        this.data = JSON.parse(JSON.stringify(data))
+        this.ID = this.data['ID']
+        this.energy = this.data['energy']
+        this.type = this.data['type']
+        this.attack = this.data['attack']
+        this.attackSpeed = this.data['attackSpeed']
+        this.weapon = this.data['weapon']
+        this.hp = this.data['hp']
+        this.speed = this.data['speed']
+        this.moveStyle = this.data['move_style']
+        this.play = this.data['play']
+    }
+
+    clone() {
+        return new Card(this.data)
     }
 
     render(pos) {

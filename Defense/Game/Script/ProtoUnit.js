@@ -13,9 +13,10 @@ class Empty extends UnitLike {
 class Unit extends UnitLike {
     constructor(data) {
         super()
-        let dataCopy = JSON.parse(JSON.stringify(data))
-
+        this.side = 1
         this.rect = new Rect2D(0, 0, 0, 0)
+
+        let dataCopy = JSON.parse(JSON.stringify(data))
 
         this.ID = dataCopy['ID']
         this.attack = dataCopy['attack']
@@ -29,15 +30,29 @@ class Unit extends UnitLike {
         this.attackRecharge = 0
         this.ability = []
 
+        this.status = 'move'
+
         this.hpStart = [0, 0]
     }
 
-    handleTick() {
+    handleTick(field) {
+        this.status = 'move'
+        if (this.moveStyle === 'simple') {
+            for (let i = 0; i < field.unitPlayerTower.length; i++) {
+                for (let j = 0; j < field.unitPlayerTower[0].length; j++) {
+                    if (field.unitPlayerTower[i][j] instanceof Tower) {
+                        if (this.rect.rectCollide(field.unitPlayerTower[i][j].rect)) {
+                            this.status = 'attack'
+                        }
+                    }
+                }
+            }
+        }
         this.move()
     }
 
     move() {
-        if (this.moveStyle === 'simple') {
+        if (this.status === 'move') {
             this.rect.position.x -= this.speed * delta / 1000
         }
     }
@@ -75,13 +90,9 @@ class Tower extends UnitLike {
     }
 
     handleTick() {
-        this.move()
     }
 
     move() {
-        if (this.moveStyle === 'simple') {
-            this.rect.position.x -= this.speed * delta / 1000
-        }
     }
 
     render() {

@@ -1,4 +1,7 @@
 class Field {
+    spawnList = [[1080, 280], [1080, 360], [1080, 440], [1080, 520]]
+    endList = [[280, 280], [280, 360], [280, 440], [280, 520]]
+
     unitPlayer = []
     unitPlayerTower = [
         [new Empty(), new Empty(), new Empty(), new Empty(), new Empty(), new Empty(), new Empty(), new Empty(), new Empty(), new Empty()],
@@ -21,8 +24,8 @@ class Field {
         this.spawn = []
         this.end = []
         for (let i = 0; i < 4; i++) {
-            this.spawn.push(new Spawn(new Rect2D(1080, 280 + 80 * i, 80, 80)))
-            this.end.push(new End(new Rect2D(200, 280 + 80 * i, 80, 80)))
+            this.spawn.push(new Spawn(new Rect2D(this.spawnList[i][0], this.spawnList[i][1], 80, 80)))
+            this.end.push(new End(new Rect2D(this.endList[i][0], this.endList[i][1], 80, 80)))
         }
 
         this.time = 0
@@ -34,7 +37,7 @@ class Field {
         this.time += delta / 1000
 
         for (let i = 0; i < this.unitEnemy.length; i++) {
-            this.unitEnemy[i].handleTick()
+            this.unitEnemy[i].handleTick(this)
         }
 
         for (let i = 0; i < this.end.length; i++) {
@@ -48,7 +51,6 @@ class Field {
         for (let i = this.wave.length - 1; i >= 0; i--) {
             if (this.time > this.wave[i][0]) {
                 let indexes = sampleList([0, 1, 2, 3], this.wave[i][1].length)
-                console.log(indexes)
                 for (let j = 0; j < indexes.length; j++) {
                     this.spawn[indexes[j]].spawnUnit(dataUnit[this.wave[i][1][j]], this)
                 }
