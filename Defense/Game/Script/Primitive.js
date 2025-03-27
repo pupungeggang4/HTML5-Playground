@@ -42,6 +42,10 @@ class Rect2D extends Shape2D {
         let distY = Math.abs(this.position.y - rect.position.y)
         return distX < (this.size.x + rect.size.x) / 2 && distY < (this.size.y + rect.size.y) / 2
     }
+
+    translate(vec) {
+        return new Rect2D(this.position.x + vec.x, this.position.y + vec.y, this.size.x, this.size.y)
+    }
 }
 
 class Circle2D extends Shape2D {

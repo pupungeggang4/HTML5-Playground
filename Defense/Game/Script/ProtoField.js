@@ -1,6 +1,6 @@
 class Field {
     spawnList = [[1080, 280], [1080, 360], [1080, 440], [1080, 520]]
-    endList = [[280, 280], [280, 360], [280, 440], [280, 520]]
+    endList = [[200, 280], [200, 360], [200, 440], [200, 520]]
 
     unitPlayer = []
     unitPlayerTower = [
@@ -45,6 +45,7 @@ class Field {
         }
 
         this.spawnHandle()
+        this.deathHandle()
     }
 
     spawnHandle() {
@@ -55,6 +56,24 @@ class Field {
                     this.spawn[indexes[j]].spawnUnit(dataUnit[this.wave[i][1][j]], this)
                 }
                 this.wave.splice(i, 1)
+            }
+        }
+    }
+
+    deathHandle() {
+        for (let i = 0; i < this.unitPlayerTower.length; i++) {
+            for (let j = 0; j < this.unitPlayerTower[0].length; j++) {
+                if (this.unitPlayerTower[i][j] instanceof Tower) {
+                    if (this.unitPlayerTower[i][j].hp <= 0) {
+                        this.unitPlayerTower[i][j] = new Empty()
+                    }
+                }
+            }
+        }
+
+        for (let i = this.unitEnemy.length - 1; i >= 0; i--) {
+            if (this.unitEnemy[i].hp <= 0) {
+                this.unitEnemy.splice(i, 1)
             }
         }
     }
