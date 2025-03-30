@@ -63,7 +63,7 @@ class Board {
     }
 
     spawnGlider(row, col) {
-        let d = Math.floor(Math.random() * 4)
+        let d = Math.floor(Math.random() * 6)
         if (d === 0) {
             this.cell[row - 1][col] = 1
             this.cell[row][col + 1] = 1
@@ -88,6 +88,12 @@ class Board {
             this.cell[row][col - 1] = 1
             this.cell[row][col + 1] = 1
             this.cell[row + 1][col + 1] = 1
+        } else {
+            this.cell[row - 1][col] = 1
+            this.cell[row][col - 1] = 1
+            this.cell[row][col] = 1
+            this.cell[row][col + 1] = 1
+            this.cell[row + 1][col] = 1
         }
     }
 
