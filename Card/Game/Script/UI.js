@@ -20,6 +20,7 @@ const UI = {
         start: {
             rect: [40, 40, 1200, 720],
             textTitle: [64, 64],
+            card: [[80, 160, 240, 400], [520, 160, 240, 400], [960, 160, 240, 400]],
             buttonStart: [560, 640, 160, 80],
             textStart: [584, 664],
         },
@@ -70,7 +71,14 @@ const UI = {
     },
 
     card: {
-
+        rect: [0, 0, 240, 400],
+        crystalImage: [[0, 0], [40, 0], [80, 0], [120, 0], [160, 0], [200, 0]],
+        crystalText: [[4, 4], [44, 4], [84, 4], [124, 4], [164, 4], [204, 4]],
+        image: [40, 40, 160, 160],
+        textAttack: [],
+        textHP: [],
+        textName: [],
+        textDescription: [],
     },
 
     menu: {

@@ -11,6 +11,8 @@ class Player {
 
         this.deck = []
         this.crystal = []
+
+        this.fatigue = 0
     }
 
     adventureInit() {
@@ -25,6 +27,8 @@ class Player {
         for (let i = 0; i < dataDeck[1]['crystal'].length; i++) {
             this.crystal.push(new Crystal(dataCrystal[dataDeck[1]['crystal'][i]]))
         }
+
+        this.fatigue = 0
     }
 
     adventureEnd() {

@@ -33,3 +33,12 @@ class GameManager {
         saveData()
     }
 }
+
+function shuffle(array) {
+    let out = []
+    while (array.length > 0) {
+        let index = Math.floor(Math.random() * array.length)
+        out.push(array.splice(index, 1)[0])
+    }
+    return out
+}

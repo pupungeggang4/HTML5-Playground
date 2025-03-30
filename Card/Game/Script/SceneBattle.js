@@ -1,4 +1,9 @@
 function loopBattle() {
+    if (menu === false) {
+        if (state === '') {
+            game.handleTickBattle()
+        }
+    }
     renderBattle()
 }
 

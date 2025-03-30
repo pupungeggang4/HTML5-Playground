@@ -115,7 +115,14 @@ class MonsterField extends FieldElement {
 }
 
 class BossField extends FieldElement {
+    constructor(rect) {
+        super()
+        this.rect = rect
+    }
 
+    render() {
+        strokeRectCamera(this.rect, camera)
+    }
 }
 
 class SaveField extends FieldElement {

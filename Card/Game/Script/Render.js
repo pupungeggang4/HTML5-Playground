@@ -70,6 +70,10 @@ function renderBattleStart() {
     } else if (state === 'start_confirm') {
         fillText('Confirm', UI.battle.start.textTitle)
     }
+
+    for (let i = 0; i < 3; i++) {
+        playerBattle.deck[i].render(UI.battle.start.card[i])
+    }
     
     strokeRect(UI.battle.start.buttonStart)
     fillText('Start', UI.battle.start.textStart)

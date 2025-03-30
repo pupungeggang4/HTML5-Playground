@@ -27,6 +27,9 @@ let game
 let player
 let playerField
 let playerBattle
+
 let battle
+let enemyBattle
+
 let field
 let camera

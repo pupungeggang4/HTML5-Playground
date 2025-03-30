@@ -30,8 +30,10 @@ class PlayerBattle {
         this.crystal = []
 
         for (let i = 0; i < player.deck.length; i++) {
-            this.deck.push(player.deck[i].clone())
+            this.deck.push(player.deck[i].cloneToCardBattle())
         }
+
+        this.deck = shuffle(this.deck)
 
         for (let i = 0; i < player.crystal.length; i++) {
             this.crystal.push(player.crystal[i].clone())
