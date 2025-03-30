@@ -75,6 +75,14 @@ function renderBattleStart() {
         playerBattle.deck[i].render(UI.battle.start.card[i])
     }
     
+    context.strokeStyle = 'Green'
+    for (let i = 0; i < 3; i++) {
+        if (playerBattle.startHandChange[i] === true) {
+            strokeRect(UI.battle.start.card[i])
+        }
+    }
+    context.strokeStyle = 'Black'
+    
     strokeRect(UI.battle.start.buttonStart)
     fillText('Start', UI.battle.start.textStart)
 }

@@ -26,7 +26,17 @@ function mouseUpBattle(pos, button) {
                 menu = true
             }
             if (state === 'start') {
+                for (let i = 0; i < 3; i++) {
+                    if (pointInsideRectUI(pos, UI.battle.start.card[i])) {
+                        if (playerBattle.startHandChange[i] === false) {
+                            playerBattle.startHandChange[i] = true
+                        } else {
+                            playerBattle.startHandChange[i] = false
+                        }
+                    }
+                }
                 if (pointInsideRectUI(pos, UI.battle.start.buttonStart)) {
+                    playerBattle.changeStartHand()
                     state = 'start_confirm'
                 }
             } else if (state === 'start_confirm') {
