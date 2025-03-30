@@ -1,5 +1,5 @@
 const dataCard = {
-    1: {'ID': 1, 'energy': 2, 'type': 'unit', 'attack': 10, 'attack_speed': 1,  'weapon': 1, 'hp': 100, 'speed': 0, 'move_style': 'stop', 'play': ['summon']}
+    1: {'ID': 1, 'energy': 2, 'type': 'unit', 'attack': 10, 'attack_speed': 1,  'weapon': 2, 'hp': 100, 'speed': 0, 'move_style': 'stop', 'play': ['summon']}
 }
 
 const dataUnit = {
@@ -7,7 +7,8 @@ const dataUnit = {
 }
 
 const dataWeapon = {
-    1: {'ID': 1, 'attack': 'random_single', 'range': [0, 0, 160, 40]}
+    1: {'ID': 1, 'attack': 'single', 'range': [0, 0, 160, 40]},
+    2: {'ID': 2, 'attack': 'projectile', 'range': [200, 0, 400, 40]}
 }
 
 const dataLevel = {

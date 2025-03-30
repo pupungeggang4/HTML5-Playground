@@ -10,8 +10,11 @@ class Field {
         [new Empty(), new Empty(), new Empty(), new Empty(), new Empty(), new Empty(), new Empty(), new Empty(), new Empty(), new Empty()]
     ]
     unitEnemy = []
+    projectile = []
+
     spawn = []
     end = []
+
     time = 0
     waveFull = []
     wave = []
@@ -36,8 +39,20 @@ class Field {
     handleTick() {
         this.time += delta / 1000
 
+        for (let i = 0; i < this.unitPlayerTower.length; i++) {
+            for (let j = 0; j < this.unitPlayerTower[0].length; j++) {
+                if (this.unitPlayerTower[i][j] instanceof Tower) {
+                    this.unitPlayerTower[i][j].handleTick(this)
+                }
+            }
+        }
+
         for (let i = 0; i < this.unitEnemy.length; i++) {
             this.unitEnemy[i].handleTick(this)
+        }
+
+        for (let i = 0; i < this.projectile.length; i++) {
+            this.projectile[i].handleTick(this)
         }
 
         for (let i = 0; i < this.end.length; i++) {
@@ -46,6 +61,7 @@ class Field {
 
         this.spawnHandle()
         this.deathHandle()
+        this.projectileHandle()
     }
 
     spawnHandle() {
@@ -78,6 +94,25 @@ class Field {
         }
     }
 
+    projectileHandle() {
+        for (let i = this.projectile.length - 1; i >= 0; i--) {
+            let p = this.projectile[i]
+            if (p.side === 0) {
+                for (let j = 0; j < this.unitEnemy.length; j++) {
+                    if (p.rect.position.insideRect(this.unitEnemy[j].rect)) {
+                        this.unitEnemy[j].hp -= p.damage
+                        this.projectile.splice(i, 1)
+                        break
+                    }
+                }
+            }
+
+            if (p.rect.position.x < -40 || p.rect.position.x > 1200) {
+                this.projectile.splice(i, 1)
+            }
+        }
+    }
+
     render() {
         for (let i = 0; i < 4; i++) {
             for (let j = 0; j < 10; j++) {
@@ -104,6 +139,10 @@ class Field {
                     this.unitPlayerTower[i][j].render()
                 }
             }
+        }
+
+        for (let i = 0; i < this.projectile.length; i++) {
+            this.projectile[i].render()
         }
     }
 }

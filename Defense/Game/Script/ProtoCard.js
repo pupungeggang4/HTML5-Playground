@@ -16,7 +16,7 @@ class Card {
         this.energy = this.data['energy']
         this.type = this.data['type']
         this.attack = this.data['attack']
-        this.attackSpeed = this.data['attackSpeed']
+        this.attackSpeed = this.data['attack_speed']
         this.weapon = this.data['weapon']
         this.hp = this.data['hp']
         this.speed = this.data['speed']

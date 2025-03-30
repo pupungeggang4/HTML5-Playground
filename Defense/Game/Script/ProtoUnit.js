@@ -49,7 +49,7 @@ class Unit extends UnitLike {
             }
         }
         this.moveHandle()
-        this.attackHandle()
+        this.attackHandle(field)
     }
 
     moveHandle() {
@@ -58,7 +58,7 @@ class Unit extends UnitLike {
         }
     }
 
-    attackHandle() {
+    attackHandle(field) {
         this.weapon.rangeCurrent = this.weapon.range.translate(this.rect.position)
 
         this.attackRecharge -= delta / 1000
@@ -68,13 +68,19 @@ class Unit extends UnitLike {
 
         if (this.status === 'attack') {
             if (this.attackRecharge <= 0) {
-                for (let i = 0; i < field.unitPlayerTower.length; i++) {
-                    for (let j = 0; j < field.unitPlayerTower[0].length; j++) {
-                        if (field.unitPlayerTower[i][j] instanceof Tower) {
-                            if (field.unitPlayerTower[i][j].side != this.side && field.unitPlayerTower[i][j].rect.position.insideRect(this.weapon.rangeCurrent)) {
-                                field.unitPlayerTower[i][j].hp -= this.attack
-                                this.attackRecharge = 1
-                            }
+                this.attackWeapon(field)
+            }
+        }
+    }
+
+    attackWeapon(field) {
+        if (this.weapon.attack === 'single') {
+            for (let i = 0; i < field.unitPlayerTower.length; i++) {
+                for (let j = 0; j < field.unitPlayerTower[0].length; j++) {
+                    if (field.unitPlayerTower[i][j] instanceof Tower) {
+                        if (field.unitPlayerTower[i][j].side != this.side && field.unitPlayerTower[i][j].rect.position.insideRect(this.weapon.rangeCurrent)) {
+                            field.unitPlayerTower[i][j].hp -= this.attack
+                            this.attackRecharge = this.attackSpeed
                         }
                     }
                 }
@@ -97,16 +103,17 @@ class Tower extends UnitLike {
     constructor(card) {
         super()
         this.side = 0
-        let cardCopy = JSON.parse(JSON.stringify(card))
+        this.dataCopy = JSON.parse(JSON.stringify(card))
         this.rect = new Rect2D(0, 0, 0, 0)
 
-        this.ID = cardCopy.ID
-        this.attack = cardCopy.attack
-        this.attackSpeed = cardCopy.attackSpeed
-        this.hp = cardCopy.hp
-        this.hpMax = cardCopy.hp
-        this.moveStyle = cardCopy.moveStyle
-        this.speed = cardCopy.speed
+        this.ID = this.dataCopy.ID
+        this.attack = this.dataCopy.attack
+        this.attackSpeed = this.dataCopy.attackSpeed
+        this.hp = this.dataCopy.hp
+        this.hpMax = this.dataCopy.hp
+        this.moveStyle = this.dataCopy.moveStyle
+        this.speed = this.dataCopy.speed
+        this.weapon = new Weapon(JSON.parse(JSON.stringify(dataWeapon[this.dataCopy['weapon']])))
 
         this.attackRecharge = 0
         this.ability = []
@@ -114,11 +121,28 @@ class Tower extends UnitLike {
         this.hpStart = [0, 0]
     }
 
-    handleTick() {
-        this.moveHandle()
+    handleTick(field) {
+        this.attackRecharge -= delta / 1000
+        if (this.attackRecharge <= 0) {
+            this.attackRecharge = 0
+        }
+        
+        this.weapon.rangeCurrent = this.weapon.range.translate(this.rect.position)
+        if (this.attackRecharge <= 0) {
+            this.attackWeapon(field)
+        }
     }
 
-    moveHandle() {
+    attackWeapon(field) {
+        if (this.weapon.attack === 'projectile') {
+            for (let i = 0; i < field.unitEnemy.length; i++) {
+                if (field.unitEnemy[i].rect.position.insideRect(this.weapon.rangeCurrent)) {
+                    field.projectile.push(new Projectile(this.rect))
+                    this.attackRecharge = this.attackSpeed
+                    break
+                }
+            }
+        }
     }
 
     render() {
@@ -136,7 +160,32 @@ class Tower extends UnitLike {
 
 class Weapon {
     constructor(data) {
+        this.attack = data['attack']
         this.range = new Rect2D(data['range'][0], data['range'][1], data['range'][2], data['range'][3])
         this.rangeCurrent = new Rect2D(0, 0, 0, 0)
+    }
+}
+
+class Projectile {
+    constructor(rect) {
+        this.rect = new Rect2D(rect.position.x, rect.position.y, 20, 20)
+        this.direction = 'right'
+        this.speed = 200
+        this.side = 0
+        this.damage = 10
+    }
+
+    handleTick() {
+        this.move()
+    }
+
+    move() {
+        if (this.direction === 'right') {
+            this.rect.position.x += this.speed * delta / 1000
+        }
+    }
+
+    render() {
+        strokeRectCenter(this.rect)
     }
 }

@@ -16,7 +16,7 @@ class Player {
     }
 
     battleStart() {
-        this.hand = [new Card(dataCard[1]), new Card(dataCard[1])]
+        this.hand = [new Card(dataCard[1]), new Card(dataCard[1]), new Card(dataCard[1]), new Card(dataCard[1])]
     }
 
     handleTick() {
