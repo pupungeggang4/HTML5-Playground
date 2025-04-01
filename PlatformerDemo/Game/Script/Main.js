@@ -4,7 +4,20 @@ window.oncontextmenu = rightClick
 
 function main() {
     game = new Game()
-    game.loop()
+    game.gameLoop = requestAnimationFrame(run)
+}
+
+function run() {
+    console.log(game.frameCurrent)
+    game.framePrevious = game.frameCurrent
+    game.frameCurrent = performance.now()
+    game.delta = game.frameCurrent - game.framePrevious
+
+    if (this.scene === 'main') {
+        SceneMain.loopMain(game)
+    }
+
+    game.gameLoop = requestAnimationFrame(run)
 }
 
 function errorHandle(err, url, line, col, obj) {
