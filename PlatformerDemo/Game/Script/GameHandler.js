@@ -12,13 +12,13 @@ class Game {
         this.framePrevious = 0
         this.delta = 0
 
-        window.addEventListener('keyup', this.keyUp, false)
-        window.addEventListener('keydown', this.keyDown, false)
+        window.addEventListener('keyup', () => this.keyUp(event), false)
+        window.addEventListener('keydown', () => this.keyDown(event), false)
 
-        this.scene = 'main'
+        this.scene = 'title'
         this.state = 'init'
+        this.menu = false
 
-        this.a = 0
         this.gameLoop = requestAnimationFrame(() => this.run())
     }
 
@@ -27,15 +27,27 @@ class Game {
         this.frameCurrent = performance.now()
         this.delta = this.frameCurrent - this.framePrevious
 
-        if (this.scene === 'main') {
-            SceneMain.loop(this)
+        if (this.scene === 'title') {
+            SceneTitle.loop(this)
+        } else if (this.scene === 'platformer') {
+            ScenePlatformer.loop(this)
         }
 
         this.gameloop = requestAnimationFrame(() => this.run())
     }
 
     keyDown(event) {
-        console.log(event.key)
+        let key = event.key
+
+        if (this.state === 'init') {
+            this.state = ''
+        }
+
+        if (this.scene === 'title') {
+            SceneTitle.keyDown(this, key)
+        } else if (this.scene === 'platformer') {
+            ScenePlatformer.keyDown(this, key)
+        }
     }
 
     keyUp(event) {

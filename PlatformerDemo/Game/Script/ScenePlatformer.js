@@ -1,10 +1,17 @@
-class SceneMain {
+class ScenePlatformer {
     static loop(game) {
         this.display(game)
     }
 
     static display(game) {
         Render.init(game)
-        game.ctx.fillRect(0, 0, 40, 40)
+    }
+
+    static keyDown(game, key) {
+
+    }
+
+    static keyUp(game, key) {
+
     }
 }
