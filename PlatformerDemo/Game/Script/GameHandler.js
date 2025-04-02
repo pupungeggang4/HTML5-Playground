@@ -19,21 +19,19 @@ class Game {
         this.state = 'init'
 
         this.a = 0
-        this.gameLoop = requestAnimationFrame(this.run)
+        this.gameLoop = requestAnimationFrame(() => this.run())
     }
 
     run() {
-        console.log(this.frameCurrent)
         this.framePrevious = this.frameCurrent
         this.frameCurrent = performance.now()
         this.delta = this.frameCurrent - this.framePrevious
 
         if (this.scene === 'main') {
-            console.log(123)
             SceneMain.loop(this)
         }
 
-        requestAnimationFrame(this.run)
+        this.gameloop = requestAnimationFrame(() => this.run())
     }
 
     keyDown(event) {
