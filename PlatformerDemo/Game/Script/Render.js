@@ -18,4 +18,8 @@ class Render {
     static fillText(game, text, pos) {
         game.ctx.fillText(text, pos[0], pos[1])
     }
+
+    static renderRect(game, rect) {
+        game.ctx.strokeRect(rect.position.x - rect.size.x / 2, rect.position.y - rect.size.y / 2, rect.size.x, rect.size.y)
+    }
 }

@@ -1,10 +1,17 @@
 let game
 
 class Game {
-    frameCurrent = 0
-    framePrevious = 0
-
     constructor() {
+        this.scene = 'title'
+        this.state = 'init'
+        this.menu = false
+
+        this.keyPressed = {
+            'left': false, 'right': false, 'up': false, 'down': false
+        }
+
+        this.player = new Player()
+
         this.canvas = document.getElementById('screen')
         this.ctx = this.canvas.getContext('2d')
 
@@ -14,10 +21,6 @@ class Game {
 
         window.addEventListener('keyup', () => this.keyUp(event), false)
         window.addEventListener('keydown', () => this.keyDown(event), false)
-
-        this.scene = 'title'
-        this.state = 'init'
-        this.menu = false
 
         this.gameLoop = requestAnimationFrame(() => this.run())
     }
@@ -39,6 +42,19 @@ class Game {
     keyDown(event) {
         let key = event.key
 
+        if (key === 'ArrowLeft') {
+            this.keyPressed['left'] = true
+        }
+        if (key === 'ArrowRight') {
+            this.keyPressed['right'] = true
+        }
+        if (key === 'ArrowUp') {
+            this.keyPressed['up'] = true
+        }
+        if (key === 'ArrowDown') {
+            this.keyPressed['down'] = true
+        }
+
         if (this.state === 'init') {
             this.state = ''
         }
@@ -51,6 +67,19 @@ class Game {
     }
 
     keyUp(event) {
+        let key = event.key
 
+        if (key === 'ArrowLeft') {
+            this.keyPressed['left'] = false
+        }
+        if (key === 'ArrowRight') {
+            this.keyPressed['right'] = false
+        }
+        if (key === 'ArrowUp') {
+            this.keyPressed['up'] = false
+        }
+        if (key === 'ArrowDown') {
+            this.keyPressed['down'] = false
+        }
     }
 }
