@@ -22,4 +22,8 @@ class Render {
     static renderRect(game, rect) {
         game.ctx.strokeRect(rect.position.x - rect.size.x / 2, rect.position.y - rect.size.y / 2, rect.size.x, rect.size.y)
     }
+
+    static renderRectFill(game, rect) {
+        game.ctx.fillRect(rect.position.x - rect.size.x / 2, rect.position.y - rect.size.y / 2, rect.size.x, rect.size.y)
+    }
 }

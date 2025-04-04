@@ -11,10 +11,10 @@ class SceneTitle {
     }
 
     static keyDown(game, key) {
-        console.log(key)
         if (key === 'Enter') {
             game.scene = 'platformer'
             game.state = 'start'
+            game.loadField()
         }
     }
 }

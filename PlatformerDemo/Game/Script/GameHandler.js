@@ -11,6 +11,8 @@ class Game {
         }
 
         this.player = new Player()
+        this.camera = new Vector2D(0, 0) 
+        this.thing = []
 
         this.canvas = document.getElementById('screen')
         this.ctx = this.canvas.getContext('2d')
@@ -19,10 +21,20 @@ class Game {
         this.framePrevious = 0
         this.delta = 0
 
-        window.addEventListener('keyup', () => this.keyUp(event), false)
-        window.addEventListener('keydown', () => this.keyDown(event), false)
+        window.addEventListener('keyup', (event) => this.keyUp(event), false)
+        window.addEventListener('keydown', (event) => this.keyDown(event), false)
 
         this.gameLoop = requestAnimationFrame(() => this.run())
+    }
+
+    loadField() {
+        this.player = new Player()
+        this.cameraAdjust()
+        this.thing = [new Wall(120, 0, 240, 240), new Wall(400, 0, 240, 240), new WaterArea(-400, 0, 240, 240)]
+    }
+
+    cameraAdjust() {
+        this.camera = this.player.rect.position.sub(new Vector2D(640, 400))
     }
 
     run() {
@@ -42,16 +54,16 @@ class Game {
     keyDown(event) {
         let key = event.key
 
-        if (key === 'ArrowLeft') {
+        if (key === 'a') {
             this.keyPressed['left'] = true
         }
-        if (key === 'ArrowRight') {
+        if (key === 'd') {
             this.keyPressed['right'] = true
         }
-        if (key === 'ArrowUp') {
+        if (key === 'w') {
             this.keyPressed['up'] = true
         }
-        if (key === 'ArrowDown') {
+        if (key === 's') {
             this.keyPressed['down'] = true
         }
 
@@ -69,16 +81,16 @@ class Game {
     keyUp(event) {
         let key = event.key
 
-        if (key === 'ArrowLeft') {
+        if (key === 'a') {
             this.keyPressed['left'] = false
         }
-        if (key === 'ArrowRight') {
+        if (key === 'd') {
             this.keyPressed['right'] = false
         }
-        if (key === 'ArrowUp') {
+        if (key === 'w') {
             this.keyPressed['up'] = false
         }
-        if (key === 'ArrowDown') {
+        if (key === 's') {
             this.keyPressed['down'] = false
         }
     }

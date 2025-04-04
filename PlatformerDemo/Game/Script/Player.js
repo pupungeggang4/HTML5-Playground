@@ -15,6 +15,6 @@ class Player {
     }
 
     render(game) {
-        Render.renderRect(game, this.rect)
+        Render.renderRect(game, this.rect.translatedRect(game.camera.minus()))
     }
 }
